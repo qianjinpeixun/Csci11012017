@@ -108,9 +108,6 @@ public class Robot {
 		collectedPoints = collectedPoints + x + y;
 	}
 
-	
-	
-
 	/**
 	 * 
 	 * compares the x and y coordinates of this robot with the x and y
@@ -150,17 +147,23 @@ public class Robot {
 		return nameStr + " (" + x + "," + y + ") " + directionStr + "    " + collectedPoints + " points";
 	}
 
+	/**
+	 * If move fails, the next position has another robot, toString() is not
+	 * suitable for print, in this case, toString can be replaced by this
+	 * method.
+	 * 
+	 * @return
+	 */
 	public String getMoveFailMessage() {
 		String nameStr = String.format("%-10s", name);
 		String directionStr = String.format("%-8s", direction);
 
 		return nameStr + " (" + x + "," + y + ") move fails   " + collectedPoints + " points";
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-
 
 	public int getX() {
 		return x;

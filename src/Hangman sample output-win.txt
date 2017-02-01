@@ -1,0 +1,17 @@
+Welcome to the Hangman game.
+I have a secret Pokemon character name. You have to guess it. You are allowed only six incorrect guesses.
+
+Secret word: ???????
+Enter the guess: a
+Correct.
+
+Secret word: ?a??a?a
+Enter the guess: t
+Correct.
+
+Secret word: ?attata
+Enter the guess: r
+Correct.
+
+Secret word: rattata
+You win!
