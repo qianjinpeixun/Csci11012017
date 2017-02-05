@@ -1,0 +1,24 @@
+Enter the center coordinates (x,y) of the first circle and its radius: 
+10 10 10
+Enter the center coordinates (x,y) of the second circle and its radius: 
+30 10 10
+Circle with center 10.0,10.0 and radius 10.0 touches Circle with center 30.0,10.0 and radius 10.0 externally
+Circle with center 10.0,10.0 and radius 10.0 does not touch Circle with center 30.0,10.0 and radius 10.0 internally
+
+
+
+Enter the center coordinates (x,y) of the first circle and its radius: 
+10 10 10
+Enter the center coordinates (x,y) of the second circle and its radius: 
+15 10 5
+Circle with center 10.0,10.0 and radius 10.0 does not touch Circle with center 15.0,10.0 and radius 5.0 externally
+Circle with center 10.0,10.0 and radius 10.0 touches Circle with center 15.0,10.0 and radius 5.0 internally
+
+
+
+Enter the center coordinates (x,y) of the first circle and its radius: 
+10 10 10
+Enter the center coordinates (x,y) of the second circle and its radius: 
+30 30 5
+Circle with center 10.0,10.0 and radius 10.0 does not touch Circle with center 30.0,30.0 and radius 5.0 externally
+Circle with center 10.0,10.0 and radius 10.0 does not touch Circle with center 30.0,30.0 and radius 5.0 internally
