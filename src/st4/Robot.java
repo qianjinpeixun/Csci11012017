@@ -1,6 +1,7 @@
 package st4;
 
 public class Robot {
+	
 
 	public String getName() {
 		return name;
@@ -49,9 +50,9 @@ public class Robot {
 	private int points;
 
 	// sets the name and the direction it faces to user-given values.
-	public Robot(String name, int direction) {
-		this.name = name;
-		this.direction = direction;
+	public Robot(String name1, int direction1) {
+		this.name = name1;
+		this.direction = direction1;
 		// set the x and y positions to (1,1) and the points collected to 0.
 		this.x = 1;
 		this.y = 1;

@@ -1,0 +1,38 @@
+Welcome to the Hangman game.
+I have a secret Pokemon character name. You have to guess it. You are allowed only six incorrect guesses.
+venusaur
+
+Secret word: ????????
+Enter the guess: a
+Correct.
+
+Secret word: ?????a??
+Enter the guess: b
+Incorrect. You have 5 incorrect guesses left.
+
+Secret word: ?????a??
+Enter the guess: c
+Incorrect. You have 4 incorrect guesses left.
+
+Secret word: ?????a??
+Enter the guess: d
+Incorrect. You have 3 incorrect guesses left.
+
+Secret word: ?????a??
+Enter the guess: e
+Correct.
+
+Secret word: ?e???a??
+Enter the guess: f
+Incorrect. You have 2 incorrect guesses left.
+
+Secret word: ?e???a??
+Enter the guess: g
+Incorrect. You have 1 incorrect guesses left.
+
+Secret word: ?e???a??
+Enter the guess: h
+Incorrect. You have 0 incorrect guesses left.
+
+The secret word was venusaur
+You lose!

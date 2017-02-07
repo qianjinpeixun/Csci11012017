@@ -11,7 +11,7 @@ public class Hangman {
 	private char[] disguisedWord;
 	private int numGuesses;
 	private int numIncorrect;
-	
+
 	public char[] getDisguisedWord() {
 		return disguisedWord;
 	}
@@ -36,39 +36,44 @@ public class Hangman {
 		this.numIncorrect = numIncorrect;
 	}
 
-	public Hangman(){
+	public Hangman() {
 		numGuesses = 0;
 		numIncorrect = 0;
-	
+
 	}
 
 	public void setSecretWord(char[] secretWord) {
 		this.secretWord = secretWord;
 	}
 
-	public char[] generateSecretWord(){
-		int min=0;
-		int max=24;
-		int word=(int)(Math.random() * (max-min)+1) + min;
-		
+	public char[] generateSecretWord() {
+		int min = 0;
+		int max = 24;
+		int word = (int) (Math.random() * (max - min) + 1) + min;
+
 		disguisedWord = new char[secretWordDictionary[word].length()];
 		for (int i = 0; i < secretWordDictionary[word].length(); i++) {
 			disguisedWord[i] = '?';
 		}
 		return secretWordDictionary[word].toCharArray();
-		
+
 	}
-	
-	public boolean makeGuess(char c){
-		for(int i=0;i<secretWord.length;i++){
-			if(c==secretWord[i])
-				return true;
+
+	public boolean makeGuess(char c) {
+		boolean isCorrect=false;
+		for (int i = 0; i < secretWord.length; i++) {
+			if (c == secretWord[i]) {
+				isCorrect= true;
+				disguisedWord[i]=c;
+			}
 		}
-		return false;
-		
+		return isCorrect;
 	}
-	public boolean isFound(){
-		if(secretWord.equals(disguisedWord)) return true;
-		else return false;
+
+	public boolean isFound() {
+		if (String.valueOf(secretWord).equals(String.valueOf(disguisedWord)))
+			return true;
+		else
+			return false;
 	}
 }

@@ -11,27 +11,33 @@ Artoo   (1,1)   Up    2 points
 Detoo   (1,1)   Up    2 points
 
 move!
-Artoo   (4,1)   Right 7 points
-Artoo ahead!
-
-move!
-Artoo   (6,1)   Right 14 points
-Detoo   (4,4)   Diag  5 points
+Artoo   (3,1)   Right 6 points
+Detoo   (3,3)   Diag  8 points
 Detoo ahead!
 
 move!
-Artoo   (8,1)   Right 23 points
-Detoo   (6,6)   Diag  17 points
+Artoo   (5,1)   Right 12 points
+Detoo   (5,3)   Right 16 points
 Detoo ahead!
 
 move!
-Artoo   (8,4)   Diag  35 points
-Detoo has reached the goal(33 points)
+Artoo   (8,4)   Diag  24 points
+Detoo   (8,6)   Diag  30 points
+Detoo ahead!
 
 move!
-Artoo   (8,7)   Diag  50 points
+Detoo has reached the goal(46 points)
 
 move!
-Artoo has reached the goal(50 points)
+Artoo   (8,7)   Diag  25 points
+
+move!
+Artoo   (8,7)   Right 40 points
+
+move!
+Artoo   (8,7)   Right 55 points
+
+move!
+Artoo has reached the goal(55 points)
 
 Game over!
