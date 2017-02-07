@@ -1,0 +1,37 @@
+Enter the name of the first robot: 
+Artoo
+Enter the direction of the first robot: 
+Up
+Enter the name of the second robot: 
+Detoo
+Enter the direction of the second robot: 
+Right
+Simulation started!
+Artoo   (1,1)   Up    2 points
+Detoo   (1,1)   Up    2 points
+
+move!
+Artoo   (4,1)   Right 7 points
+Artoo ahead!
+
+move!
+Artoo   (6,1)   Right 14 points
+Detoo   (4,4)   Diag  5 points
+Detoo ahead!
+
+move!
+Artoo   (8,1)   Right 23 points
+Detoo   (6,6)   Diag  17 points
+Detoo ahead!
+
+move!
+Artoo   (8,4)   Diag  35 points
+Detoo has reached the goal(33 points)
+
+move!
+Artoo   (8,7)   Diag  50 points
+
+move!
+Artoo has reached the goal(50 points)
+
+Game over!
