@@ -5,6 +5,11 @@ public class StudentDemo {
 	public static void main(String[] args) {
 
 		Student student=new Student();
+		
+		Person p1=new Person();
+		
+		
+		
 		System.out.println(student.toString());
 		student.setName("Student 1");
 		System.out.println(student.toString());

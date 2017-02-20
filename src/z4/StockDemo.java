@@ -32,7 +32,7 @@ public class StockDemo {
 		else if (s1.compareTo(s2) == 1)
 			System.out.println("The value of " + sym2 + " is higher than " + sym1);
 		//最后一个else 不用if
-		else if (s1.compareTo(s2) == 0)
+		else
 			System.out.println("The value of " + sym1 + " is equals to " + sym2);
 
 		System.out.println("The total value of my portfolio is " + (prc1 * sh1 + prc2 * sh2));

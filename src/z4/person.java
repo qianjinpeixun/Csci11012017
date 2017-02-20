@@ -8,43 +8,54 @@ public class person {
 	private double weight;
 	private double height;
 
-	// some 'set'methods to hold value
 	
-	public void setAge(int a) {
-		age = a;
+	public String getName() {
+		return name;
 	}
-	//setName是eclipse自动生成的
+
+
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public void setWeight(double w1) {
-		weight = w1;
-	}
-
-	public void setHeight(double h1) {
-		height = h1;
-	}
-
-	// some 'get' methods to hold value
-	public String getName() {
-		return name;
-	}
 
 	public int getAge() {
 		return age;
 	}
 
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+
 	public double getWeight() {
 		return weight;
 	}
+
+
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+
 
 	public double getHeight() {
 		return height;
 	}
 
+
+	public void setHeight(double height) {
+		this.height = height;
+	}
+
+	public String toString1(){
+		return "haha";
+	}
+
 	public double findBMI() {
 		//一般不建议直接返回语句，应该返回变量
-		return 703 * weight / height / height;
+		double finalBMI=703 * weight / height / height;
+		System.out.println(finalBMI);
+		return finalBMI;
 	}// end method
 }// end class

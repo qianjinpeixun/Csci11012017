@@ -1,3 +1,4 @@
+package ass1;
 
 /**
  * The objective is to build a simple robot game where the robots are modeled as

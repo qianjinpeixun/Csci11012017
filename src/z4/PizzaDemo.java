@@ -9,6 +9,10 @@ public class PizzaDemo {
 	public static void main(String[] args) {
 		// create a pizza object
 		Pizza p = new Pizza(0, 0);
+		
+		Pizza.yyy=8;
+		Pizza.yyy=9;
+		
 
 		Scanner k = new Scanner(System.in);
 

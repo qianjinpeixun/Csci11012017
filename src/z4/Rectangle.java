@@ -1,6 +1,18 @@
 package z4;
 
+
+
 public class Rectangle {
+	
+	public Rectangle(){
+		
+	}
+	public Rectangle(double width,double height){
+		this.height=height;
+		this.width=width;
+	}
+
+	
 	private double width;
 	private double height;
 
@@ -32,7 +44,7 @@ public class Rectangle {
 		return 2 * width + 2 * height;
 	}
 
-	public String toString() {
-		return "Ranctagle:[Width:" + width + ",Height:" + height + "]";
+	public String toString1111() {
+		return "Height="+height + " Width="+width;
 	}// end method
 }// end class

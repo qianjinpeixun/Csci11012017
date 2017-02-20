@@ -7,6 +7,11 @@ public class Student extends Person {
 	public Student() {
 
 	}
+	
+	@Override
+	public String getName(){
+		return "Student name is:"+super.getName();
+	}
 
 	public void reset(String newName, int newNumber) {
 		this.sutdentNumber = newNumber;

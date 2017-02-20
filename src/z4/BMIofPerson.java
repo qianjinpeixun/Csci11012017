@@ -20,9 +20,12 @@ public class BMIofPerson {
 		name = i.nextLine();
 		System.out.println("Enter the age:");
 		age = i.nextInt();
+
 		System.out.println("Enter the weight in pounds:");
+
 		w1 = i.nextDouble();
 		System.out.println("Enter the height in inches:");
+
 		h1 = i.nextDouble();
 
 		// pass values into method
@@ -30,20 +33,24 @@ public class BMIofPerson {
 		p.setAge(age);
 		p.setWeight(w1);
 		p.setHeight(h1);
-		if (age < 20) {
-			System.out.println("The minimum age should be 20 in order to calculate the BMI");
-		} 
-		//还有必要加if吗？
-		else if (age >= 20) {
-			System.out.println("The BMI of" + name + " is" + p.findBMI());
-			if (p.findBMI() < 18.5)
-				System.out.println("The BMI status is Underweight");
-			else if (p.findBMI() >= 18.5 && p.findBMI() < 25)
-				System.out.println("The BMI status is Normal");
-			else if (p.findBMI() >= 25 && p.findBMI() < 30)
-				System.out.println("The BMI status is Overweight");
-			else if (p.findBMI() >= 30)
-				System.out.println("The BMI status is Obese");
-		}
+		
+		System.out.println(p);
+
+		System.out.println(p.toString1());
+		
+		// if (age < 20) {
+		// System.out.println("The minimum age should be 20 in order to
+		// calculate the BMI");
+		// }else {
+		// System.out.println("The BMI of" + name + " is" + p.findBMI());
+		// if (p.findBMI() < 18.5)
+		// System.out.println("The BMI status is Underweight");
+		// else if (p.findBMI() >= 18.5 && p.findBMI() < 25)
+		// System.out.println("The BMI status is Normal");
+		// else if (p.findBMI() >= 25 && p.findBMI() < 30)
+		// System.out.println("The BMI status is Overweight");
+		// else if (p.findBMI() >= 30)
+		// System.out.println("The BMI status is Obese");
+		// }
 	}// end method
 }// end class

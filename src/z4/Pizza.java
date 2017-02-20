@@ -3,14 +3,31 @@ package z4;
 //问题比较多，哪些是成员变量，哪些是静态变量
 
 public class Pizza { 
+	
+	
+	public int age=9;
+	
+	public static int yyy;
+	
+	public void play(){
+		yyy=18;
+	}
 
+	
+	public static void play2(){
+		yyy=9;
+	}
+	
+	
+	
+	
  private int IDnum; 
 
- private static int NumP;//number of pizza 
+ private static  int NumP;//number of pizza 
 
  private static double Cost; 
 
- private static int TotalNum; 
+ private  int TotalNum; 
 
  private static double TotalSale; 
 

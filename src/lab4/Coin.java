@@ -1,14 +1,25 @@
 package lab4;
 
 public class Coin {
-	
-	public Coin(String name,int value){
-		this.name =name;
-		this.value=value;
-	}
-	
 	private String name;
 	private int value;
+	
+	
+	public Coin(){
+		
+	}
+	
+	public Coin(String n){
+		this.name=n;
+	}
+
+	
+	public Coin(String name, int value) {
+		this.name = name;
+		this.value = value;
+	}
+
+	
 	public String getName() {
 		return name;
 	}
@@ -26,6 +37,7 @@ public class Coin {
 		return "Coin [name=" + name + ", value=" + value + "]";
 	}
 	
-	
 
+	
+	
 }

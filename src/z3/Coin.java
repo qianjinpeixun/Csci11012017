@@ -1,24 +1,29 @@
 package z3;
 
-public class Coin
-{
-   private String name; 
-   private int value;
-   public Coin(String n, int v)
-   {
-      name = n;
-      value  = v;
-   }
-   public String getName()
-   {
-      return name;
-   }
-   public double getValue()
-   {
-      return value;
-   }
-   public String toString()
-   {
-      return this.name + " " + this.value;
-   }
-}       
+public class Coin {
+	private String name;
+	private int value;
+	public Coin(String name, int value) {
+		super();
+		this.name = name;
+		this.value = value;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getValue() {
+		return value;
+	}
+	public void setValue(int value) {
+		this.value = value;
+	}
+	
+	public String toString() {
+		return "Coin [name=" + name + ", value=" + value + "]";
+	}
+
+	
+}

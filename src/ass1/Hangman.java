@@ -1,3 +1,4 @@
+package ass1;
 
 /**
  * In this question, you are required to construct a class that could be used to

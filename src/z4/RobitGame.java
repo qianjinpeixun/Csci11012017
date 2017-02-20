@@ -26,10 +26,15 @@ public class RobitGame {
 		// works
 		Robit r1 = new Robit(n1, d1.toLowerCase());
 		Robit r2 = new Robit(n2, d2.toLowerCase());
+		
+		boolean isArtooReachGoal=false;
 
 		// condition:two robot have not reach the end yet,keep moving
 		while (r1.getXpos() < 8 && r1.getYpos() < 8 && r2.getXpos() < 8 && r2.getYpos() < 8) {
 
+			
+				
+				
 			// random number to give moves between 1 to 3,direction between 1 to
 			// 3,"1:up","2:right","3:diagonal"
 			//一般要定义变量，方便调试，打印log

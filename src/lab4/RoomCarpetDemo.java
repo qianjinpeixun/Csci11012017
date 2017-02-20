@@ -23,6 +23,8 @@ public class RoomCarpetDemo {
 		double cost2 = scanner.nextDouble();
 		
 		RoomDimension roomDimension1=new RoomDimension(length1,width1);
+		
+		
 		RoomDimension roomDimension2=new RoomDimension(length2,width2);
 		
 		RoomCarpet roomCarpet1=new RoomCarpet(roomDimension1,cost1);

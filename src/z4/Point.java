@@ -9,6 +9,10 @@ public class Point {
 	public Point() {
 	}
 
+	public Point(int x) {
+		xP = x;
+	}
+
 	// constructor
 	public Point(int x, int y) {
 		xP = x;
@@ -33,19 +37,9 @@ public class Point {
 		return yP;
 	}
 
-	// toString method
-	public String toString(Point p) {
-		return "The distance between " + "[" + this.xP + "," + this.yP + "] and [" + p.getXp() + "," + p.getYp()
-				+ "] is " + findDistance(p);
-
-	}
-
 	// find higher point between two points
 	public boolean isHigher(Point p) {
-		if (this.yP < p.getYp())
-			return true;
-		else
-			return false;
+		return (this.getYp() > p.getYp());
 	}
 
 	// find distance between each two points
