@@ -1,5 +1,7 @@
 package ass1;
 
+import java.util.ArrayList;
+
 public class Circle {
 	private double cx;
 	private double cy;
@@ -36,6 +38,9 @@ public class Circle {
 	}
 
 	public String toString() {
+		ArrayList list=new ArrayList();
+		
+		
 		return "Circle with center " + cx + "," + cy + " and radius " + radius;
 	}
 
