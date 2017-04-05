@@ -4,6 +4,10 @@ public class LinkedList {
 	private Node front;
 	private int count;
 
+	public void setFront(Node n) {
+		front = n;
+	}
+
 	// constructor
 	public LinkedList() {
 		front = null;
@@ -40,6 +44,19 @@ public class LinkedList {
 			return "Empty list";
 		else
 			return front.getData();
+	}
+
+	public void addToEnd(String d) {
+		Node n = new Node(d, null);
+		Node curr = front;
+		if (front == null)
+			front = n;
+		else {
+			while (curr.getNext() != null)
+				curr = curr.getNext();
+			curr.setNext(n);
+		}
+		count++;
 	}
 
 	// new method added - get the first node

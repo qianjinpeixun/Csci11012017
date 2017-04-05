@@ -1,0 +1,95 @@
+Finally, no more place to put an XO, nobody win!
+
+Player 1 name: Bob
+Player 2 name: Sara
+Bob - you are X's and you go first.
+[null, null, null]
+[null, null, null]
+[null, null, null]
+            Col
+            1    2    3    
+Row     1               
+        2               
+        3               
+Please input a row# between 1-3 and column# between 1-3:1 1
+[XO [name=X], null, null]
+[null, null, null]
+[null, null, null]
+            Col
+            1    2    3    
+Row     1   X           
+        2               
+        3               
+Sara please input a row# between 1-3 and column# between 1-3:2 2
+[XO [name=X], null, null]
+[null, XO [name=O], null]
+[null, null, null]
+            Col
+            1    2    3    
+Row     1   X           
+        2       O       
+        3               
+Bob please input a row# between 1-3 and column# between 1-3:1 3
+[XO [name=X], null, XO [name=X]]
+[null, XO [name=O], null]
+[null, null, null]
+            Col
+            1    2    3    
+Row     1   X       X   
+        2       O       
+        3               
+Sara please input a row# between 1-3 and column# between 1-3:2 3
+[XO [name=X], null, XO [name=X]]
+[null, XO [name=O], XO [name=O]]
+[null, null, null]
+            Col
+            1    2    3    
+Row     1   X       X   
+        2       O   O   
+        3               
+Bob please input a row# between 1-3 and column# between 1-3:2 1
+[XO [name=X], null, XO [name=X]]
+[XO [name=X], XO [name=O], XO [name=O]]
+[null, null, null]
+            Col
+            1    2    3    
+Row     1   X       X   
+        2   X   O   O   
+        3               
+Sara please input a row# between 1-3 and column# between 1-3:3 1
+[XO [name=X], null, XO [name=X]]
+[XO [name=X], XO [name=O], XO [name=O]]
+[XO [name=O], null, null]
+            Col
+            1    2    3    
+Row     1   X       X   
+        2   X   O   O   
+        3   O           
+Bob please input a row# between 1-3 and column# between 1-3:3 2
+[XO [name=X], null, XO [name=X]]
+[XO [name=X], XO [name=O], XO [name=O]]
+[XO [name=O], XO [name=X], null]
+            Col
+            1    2    3    
+Row     1   X       X   
+        2   X   O   O   
+        3   O   X       
+Sara please input a row# between 1-3 and column# between 1-3:1 2
+[XO [name=X], XO [name=O], XO [name=X]]
+[XO [name=X], XO [name=O], XO [name=O]]
+[XO [name=O], XO [name=X], null]
+            Col
+            1    2    3    
+Row     1   X   O   X   
+        2   X   O   O   
+        3   O   X       
+Bob please input a row# between 1-3 and column# between 1-3:3 3
+[XO [name=X], XO [name=O], XO [name=X]]
+[XO [name=X], XO [name=O], XO [name=O]]
+[XO [name=O], XO [name=X], XO [name=X]]
+            Col
+            1    2    3    
+Row     1   X   O   X   
+        2   X   O   O   
+        3   O   X   X   
+There is no more place to put an XO, nobody win!

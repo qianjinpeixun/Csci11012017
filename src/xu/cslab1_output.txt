@@ -1,0 +1,99 @@
+E3:
+ ----jGRASP exec: java RectangleDemo2
+Enter width and height of the rectangle:20 13
+
+Rectangle:[Width: 20, Hieght: 13]
+Area: 260 square units
+Perimeter: 66 units
+
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java RectangleDemo2
+Enter width and height of the rectangle:22 33
+
+Rectangle:[Width: 22, Hieght: 33]
+Area: 726 square units
+Perimeter: 110 units
+
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java RectangleDemo2
+Enter width and height of the rectangle:33 77
+
+Rectangle:[Width: 33, Hieght: 77]
+Area: 2541 square units
+Perimeter: 220 units
+
+ ----jGRASP: operation complete.
+
+
+E4:
+----jGRASP exec: java BMIDemo
+Enter the name: JESSICA
+Enter the age: 12
+Enter the weight in the pounds: 120.3
+Enter the height in the inches: 30.4
+
+The minimum age should be 20 in order to calculate the BMI.
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java BMIDemo
+Enter the name: HELEN
+Enter the age: 28
+Enter the weight in the pounds: 145.6
+Enter the height in the inches: 60
+
+The BMI of HELEN is 28.432444444444446
+The BMI status is Overweight
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java BMIDemo
+Enter the name: ZHU
+Enter the age: 4
+Enter the weight in the pounds: 233
+Enter the height in the inches: 89
+
+The minimum age should be 20 in order to calculate the BMI.
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java BMIDemo
+Enter the name: XU
+Enter the age: 45
+Enter the weight in the pounds: 102.4
+Enter the height in the inches: 69.5
+
+The BMI of XU is 14.903410796542621
+The BMI status is Underweight
+ ----jGRASP: operation complete.
+
+
+E5:
+----jGRASP exec: java CarTester
+Enter the capacity (in liters): 100.0
+Enter the fuel consumption rate (in lt/km): 0.5
+Enter the amount of gas to fill: 40.0
+Enter the distance to drive: 100.0
+Cannot drive. Not enough gas.
+
+Gas remaining in tank: 40.0
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java CarTester
+Enter the capacity (in liters): 50.0
+Enter the fuel consumption rate (in lt/km): 0.1
+Enter the amount of gas to fill: 60.0
+Enter the distance to drive: 100.0
+Cannot fill.Exceeds capacity.
+Cannot drive. Not enough gas.
+
+Gas remaining in tank: 0.0
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java CarTester
+Enter the capacity (in liters): 300.0
+Enter the fuel consumption rate (in lt/km): 0.3
+Enter the amount of gas to fill: 100.0
+Enter the distance to drive: 200.0
+
+Gas remaining in tank: 40.0
+ ----jGRASP: operation complete.

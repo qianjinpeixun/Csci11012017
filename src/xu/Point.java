@@ -13,7 +13,7 @@ public class Point{
    }
    
    //get
-   public int getX(){return xcoordinate;}
+   private int getX(){return xcoordinate;}
    public int getY(){return ycoordinate;}
    
    //set

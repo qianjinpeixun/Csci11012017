@@ -1,0 +1,209 @@
+CS1101 Lab3 ? Output
+Jiawen Xu B00742689
+
+[E1b]
+----jGRASP exec: java TurnTaker1
+Turn = 1
+Love from Romeo
+Love from Juliet
+Turn = 2
+Love from Romeo
+Love from Juliet
+Turn = 3
+Love from Romeo
+Love from Juliet
+Turn = 4
+Love from Romeo
+Love from Juliet
+Turn = 5
+Love from Romeo
+Love from Juliet
+ ----jGRASP: operation complete.
+
+
+[E1c]
+----jGRASP exec: java TurnTaker2
+How many turns? 7
+Turn = 1
+Love from Romeo
+Turn = 2
+Love from Juliet
+Turn = 3
+Love from Romeo
+Turn = 4
+Love from Juliet
+Turn = 5
+Love from Romeo
+Turn = 6
+Love from Juliet
+Turn = 7
+Love from Romeo
+Love from Juliet
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java TurnTaker2
+How many turns? 8
+Turn = 1
+Love from Romeo
+Turn = 2
+Love from Juliet
+Turn = 3
+Love from Romeo
+Turn = 4
+Love from Juliet
+Turn = 5
+Love from Romeo
+Turn = 6
+Love from Juliet
+Turn = 7
+Love from Romeo
+Turn = 8
+Love from Romeo
+Love from Juliet
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java TurnTaker2
+How many turns? 2
+Turn = 1
+Love from Romeo
+Turn = 2
+Love from Romeo
+Love from Juliet
+ ----jGRASP: operation complete.
+
+
+[E2]
+----jGRASP exec: java PizzaDemo
+The price per pizza: 5
+How many pizza stands?5
+Stand 1 sales: 2
+Stand 2 sales: 1
+Stand 3 sales: 1
+Stand 4 sales: 1
+Stand 5 sales: 1
+
+Total pizzas sold: 6
+Total sales: $30.0
+
+Process completed.
+ ----jGRASP: operation complete.
+
+----jGRASP exec: java PizzaDemo
+The price per pizza: 6
+How many pizza stands?3
+Stand 1 sales: 2
+Stand 2 sales: 4
+Stand 3 sales: 5
+
+Total pizzas sold: 11
+Total sales: $66.0
+
+Process completed.
+ ----jGRASP: operation complete.
+
+----jGRASP exec: java PizzaDemo
+The price per pizza: 7
+How many pizza stands?6
+Stand 1 sales: 2
+Stand 2 sales: 5
+Stand 3 sales: 7
+Stand 4 sales: 3
+Stand 5 sales: 4
+Stand 6 sales: 6
+
+Total pizzas sold: 27
+Total sales: $189.0
+
+Process completed.
+ ----jGRASP: operation complete.
+
+[E3]
+----jGRASP exec: java MyIntegerDemo
+n1 is 5
+n1 is even? false
+n1 is odd? true
+n1 is prime? true
+15 is prime? false
+3539
+9786
+n2 is 24
+n2 is odd? false
+45 is odd? true
+n1 is equal to n2? false
+n1 is equal to 5? true
+
+ ----jGRASP: operation complete.
+
+----jGRASP exec: java MyIntegerDemo
+n1 is 6
+n1 is even? true
+n1 is odd? false
+n1 is prime? false
+18 is prime? false
+5482
+1234
+n2 is 45
+n2 is odd? true
+67 is odd? true
+n1 is equal to n2? false
+n1 is equal to 4? false
+
+ ----jGRASP: operation complete.
+
+----jGRASP exec: java MyIntegerDemo
+n1 is 16
+n1 is even? true
+n1 is odd? false
+n1 is prime? false
+89 is prime? true
+3693
+4321
+n2 is 30
+n2 is odd? false
+88 is odd? false
+n1 is equal to n2? false
+n1 is equal to 9? false
+
+ ----jGRASP: operation complete.
+
+----jGRASP exec: java MyIntegerDemo
+n1 is 66
+n1 is even? true
+n1 is odd? false
+n1 is prime? false
+99 is prime? false
+5683
+7890
+n2 is 22
+n2 is odd? false
+44 is odd? false
+n1 is equal to n2? false
+n1 is equal to 1? false
+
+ ----jGRASP: operation complete.
+
+
+[E4]
+----jGRASP exec: java CircleDemo
+Enter the center coordinates (x,y) of first circle and its radius: 2 2 1
+Enter the center coordinates (x,y) of second circle and its radius: 4 2 1
+Circle with center 2.0,2.0 and radius 1.0 touches Circle with center 4.0,2.0 and radius 1.0 externally
+Circle with center 2.0,2.0 and radius 1.0 does not touches Circle with center 4.0,2.0 and radius 1.0 internally
+
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java CircleDemo
+Enter the center coordinates (x,y) of first circle and its radius: 3 1.5 1.5
+Enter the center coordinates (x,y) of second circle and its radius: 4 2 1.5
+Circle with center 3.0,1.5 and radius 1.5 does not touches Circle with center 4.0,2.0 and radius 1.5 externally
+Circle with center 3.0,1.5 and radius 1.5 does not touches Circle with center 4.0,2.0 and radius 1.5 internally
+
+ ----jGRASP: operation complete.
+
+----jGRASP exec: java CircleDemo
+Enter the center coordinates (x,y) of first circle and its radius: 20 20 20 
+Enter the center coordinates (x,y) of second circle and its radius: 12 14 10
+Circle with center 20.0,20.0 and radius 20.0 does not touches Circle with center 12.0,14.0 and radius 10.0 externally
+Circle with center 20.0,20.0 and radius 20.0 touches Circle with center 12.0,14.0 and radius 10.0 internally
+
+ ----jGRASP: operation complete.

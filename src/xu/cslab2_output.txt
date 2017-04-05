@@ -1,0 +1,158 @@
+CSCI 1101 
+Lab2 Output
+Jiawen Xu 
+B00742689
+
+E1-Bug
+ ----jGRASP exec: java Bug
+Position: 38   Direction: Left
+--------------------------------------X------------
+Moves: 23
+Position: 15   Direction: Left
+---------------X-----------------------------------
+
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java Bug
+Position: 17   Direction: Left
+-----------------X---------------------------------
+Moves: 38
+Position: 21   Direction: Right
+---------------------X-----------------------------
+
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java Bug
+Position: 43   Direction: Left
+-------------------------------------------X-------
+Moves: 30
+Position: 13   Direction: Left
+-------------X-------------------------------------
+
+ ----jGRASP: operation complete.
+
+E2-Point
+----jGRASP exec: java PointDemo
+Enter the x and y coordinates of point1: 8 9
+Enter the x and y coordinates of point2: 4 3
+Enter the x and y coordinates of point3: 2 1
+Enter the x and y coordinates of point4: 5 6
+[2,1] is the highest point
+The distance between [8,9][4,3] is 7.211102550927978
+The distance between [2,1][5,6] is 5.830951894845301
+[8,9]-->[4,3] is longer than [2,1]-->[5,6]
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java PointDemo
+Enter the x and y coordinates of point1: 1 2
+Enter the x and y coordinates of point2: 2 3 
+Enter the x and y coordinates of point3: 3 4
+Enter the x and y coordinates of point4: 4 5
+[1,2] is the highest point
+The distance between [1,2][2,3] is 1.4142135623730951
+The distance between [3,4][4,5] is 1.4142135623730951
+[1,2]-->[2,3] is same with [3,4]-->[4,5]
+ ----jGRASP: operation complete.
+
+ ----jGRASP exec: java PointDemo
+Enter the x and y coordinates of point1: 9 8
+Enter the x and y coordinates of point2: 7 8
+Enter the x and y coordinates of point3: 5 6
+Enter the x and y coordinates of point4: 4 9
+[5,6] is the highest point
+The distance between [9,8][7,8] is 2.0
+The distance between [5,6][4,9] is 3.1622776601683795
+[5,6]-->[4,9] is longer than [9,8]-->[7,8]
+ ----jGRASP: operation complete.
+E3-Stock
+----jGRASP exec: java StockDemo
+Enter the symbols for the two stocks: IBM MOS
+Enter their prices: 105.23 89.88
+Enter the number of shares for the two stocks: 45 60
+
+I have the following stocks: 
+Stock: IBM
+Price: 105.23
+Shares: 45
+
+I have the following stocks: 
+Stock: MOS
+Price: 89.88
+Shares: 60
+
+The value of MOS is higher than IBM
+The total value of my portfolio is: $10128.15
+ ----jGRASP: operation complete.
+
+
+ ----jGRASP exec: java StockDemo
+Enter the symbols for the two stocks: XXX ZZZ
+Enter their prices: 12.43 34.22
+Enter the number of shares for the two stocks: 23 56
+
+I have the following stocks: 
+Stock: XXX
+Price: 12.43
+Shares: 23
+
+I have the following stocks: 
+Stock: ZZZ
+Price: 34.22
+Shares: 56
+
+The value of ZZZ is higher than XXX
+The total value of my portfolio is: $2202.21
+ ----jGRASP: operation complete.
+
+
+----jGRASP exec: java StockDemo
+Enter the symbols for the two stocks: ABC EFG
+Enter their prices: 232.66 445.7
+Enter the number of shares for the two stocks: 23 89
+
+I have the following stocks: 
+Stock: ABC
+Price: 232.66
+Shares: 23
+
+I have the following stocks: 
+Stock: EFG
+Price: 445.7
+Shares: 89
+
+The value of EFG is higher than ABC
+The total value of my portfolio is: $45018.479999999996
+ ----jGRASP: operation complete.
+
+
+
+
+
+
+
+E3-Rectangle2D
+----jGRASP exec: java Rectangle2DDemo
+Enter the xpos, ypos, width and height of the rectangle: 2 2 5.5 4.9
+The perimeter of the rectangle is 20.8
+The area of the rectangle is 26.950000000000003
+Rectangle [[2.0,2.0],width=5.5,height=4.9] contains point [3.0,3.0]
+Rectangle [[2.0,2.0],width=5.5,height=4.9] does not contains Rectangle [[4.0,5.0],width=10.5,height=3.2]
+ ----jGRASP: operation complete.
+
+
+ ----jGRASP exec: java Rectangle2DDemo
+Enter the xpos, ypos, width and height of the rectangle: 4 6 12.5 22.4
+The perimeter of the rectangle is 69.8
+The area of the rectangle is 280.0
+Rectangle [[4.0,6.0],width=12.5,height=22.4] does not contains point [3.0,3.0]
+Rectangle [[4.0,6.0],width=12.5,height=22.4] does not contains Rectangle [[4.0,5.0],width=10.5,height=3.2]
+ ----jGRASP: operation complete.
+
+
+ ----jGRASP exec: java Rectangle2DDemo
+Enter the xpos, ypos, width and height of the rectangle: 1 1 45 66.4
+The perimeter of the rectangle is 222.8
+The area of the rectangle is 2988.0000000000005
+Rectangle [[1.0,1.0],width=45.0,height=66.4] contains point [3.0,3.0]
+Rectangle [[1.0,1.0],width=45.0,height=66.4] contains Rectangle [[4.0,5.0],width=10.5,height=3.2]
+ ----jGRASP: operation complete.
