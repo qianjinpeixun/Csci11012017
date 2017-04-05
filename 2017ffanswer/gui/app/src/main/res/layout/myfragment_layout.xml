@@ -1,0 +1,178 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"   xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+
+    <data>
+
+		<variable name="listenPage" type="org.maison.android.ffanswerEn.viewmodel.MainViewModel"/>
+
+    </data>
+
+
+<android.support.percent.PercentRelativeLayout
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+
+	<TextView
+		android:id="@+id/row1LeftTextTitle"
+
+		app:layout_widthPercent="50%"
+		app:layout_heightPercent="7%"
+		android:text="@{listenPage.text1}"
+		android:textSize="14sp"
+		android:textColor="@color/black"
+		android:layout_alignBaseline="@+id/row1leftImage"
+		android:layout_below="@+id/row1leftImage"
+		android:layout_marginLeft="15dp"/>
+
+	<ImageView
+		android:id="@+id/row1leftImage"
+		app:layout_widthPercent="50%"
+		app:layout_heightPercent="25%"
+		android:scaleType="fitCenter"
+		app:imageUrl="@{listenPage.url1}"
+		android:src="@drawable/p1497"
+        android:clickable="true"
+		android:onClick="@{listenPage::clickImage1}"
+
+		android:padding="4dp"/>
+
+
+
+	<ImageView
+		android:id="@+id/row1RightImage"
+		app:layout_widthPercent="50%"
+		app:layout_heightPercent="25%"
+		android:scaleType="fitCenter"
+		android:src="@drawable/p1497"
+		app:imageUrl="@{listenPage.url2}"
+		android:layout_toRightOf="@id/row1leftImage"
+        android:clickable="true"
+		android:onClick="@{listenPage::clickImage2}"
+
+
+		android:padding="4dp"/>
+    <TextView
+		android:id="@+id/row1RightTextTitle"
+		app:layout_widthPercent="50%"
+
+		app:layout_heightPercent="7%"
+		android:text="@{listenPage.text2}"
+		android:textSize="14sp"
+		android:textColor="@color/black"
+		android:layout_below="@id/row1RightImage"
+		android:layout_alignLeft="@id/row1RightImage"
+		android:layout_marginLeft="15dp"/>
+
+    <TextView
+		android:id="@+id/row2LeftTextTitle"
+
+		app:layout_widthPercent="50%"
+
+		app:layout_heightPercent="7%"
+		android:text="@{listenPage.text3}"
+		android:textSize="14sp"
+		android:textColor="@color/black"
+		android:layout_alignBaseline="@+id/row2leftImage"
+		android:layout_below="@+id/row2leftImage"
+		android:layout_marginLeft="15dp"/>
+
+    <ImageView
+        android:id="@+id/row2leftImage"
+        app:layout_widthPercent="50%"
+		app:layout_heightPercent="25%"
+        android:scaleType="fitCenter"
+        android:src="@drawable/p1497"
+		app:imageUrl="@{listenPage.url3}"
+		android:layout_below="@id/row1LeftTextTitle"
+		android:clickable="true"
+		android:onClick="@{listenPage::clickImage3}"
+
+		android:padding="4dp"/>
+
+
+    <TextView
+		android:id="@+id/row2RightTextTitle"
+		app:layout_widthPercent="50%"
+		app:layout_heightPercent="7%"
+		android:text="@{listenPage.text4}"
+		android:textSize="14sp"
+		android:textColor="@color/black"
+		android:layout_below="@+id/row2RightImage"
+		android:layout_alignLeft="@id/row2RightImage"
+		android:layout_marginLeft="15dp"/>
+
+    <ImageView
+        android:id="@+id/row2RightImage"
+        app:layout_widthPercent="50%"
+		app:layout_heightPercent="25%"
+        android:scaleType="fitCenter"
+        android:src="@drawable/p1497"
+		app:imageUrl="@{listenPage.url4}"
+		android:layout_below="@id/row1RightTextTitle"
+        android:layout_toRightOf="@id/row2leftImage"
+		android:clickable="true"
+		android:onClick="@{listenPage::clickImage4}"
+
+		android:padding="4dp"/>
+
+
+
+
+
+	<TextView
+		android:id="@+id/row3LeftTextTitle"
+
+		app:layout_widthPercent="50%"
+
+		app:layout_heightPercent="7%"
+		android:text="@{listenPage.text5}"
+		android:textSize="14sp"
+		android:textColor="@color/black"
+		android:layout_alignBaseline="@+id/row3leftImage"
+		android:layout_below="@+id/row3leftImage"
+		android:layout_marginLeft="15dp"/>
+
+	<TextView
+		android:id="@+id/row3RightTextTitle"
+		app:layout_widthPercent="50%"
+		app:layout_heightPercent="7%"
+		android:text="@{listenPage.text6}"
+		android:textSize="14sp"
+		android:textColor="@color/black"
+		android:layout_alignBaseline="@+id/row3RightImage"
+		android:layout_below="@+id/row3RightImage"
+		android:layout_alignLeft="@id/row3RightImage"
+		android:layout_marginLeft="15dp"/>
+
+    <ImageView
+        android:id="@+id/row3RightImage"
+        app:layout_widthPercent="50%"
+		app:layout_heightPercent="25%"
+        android:scaleType="fitCenter"
+        android:src="@drawable/p1497"
+		app:imageUrl="@{listenPage.url6}"
+		android:layout_below="@id/row2RightTextTitle"
+        android:layout_toRightOf="@id/row3leftImage"
+		android:clickable="true"
+		android:onClick="@{listenPage::clickImage6}"
+
+		android:padding="4dp"/>
+
+	<ImageView
+        android:id="@+id/row3leftImage"
+        app:layout_widthPercent="50%"
+		app:layout_heightPercent="25%"
+        android:scaleType="fitCenter"
+        android:src="@drawable/p1497"
+        app:imageUrl="@{listenPage.url5}"
+		android:clickable="true"
+        android:onClick="@{listenPage::clickImage5}"
+
+		android:layout_below="@+id/row2LeftTextTitle"
+		android:padding="4dp"/>
+
+
+</android.support.percent.PercentRelativeLayout>
+</layout>

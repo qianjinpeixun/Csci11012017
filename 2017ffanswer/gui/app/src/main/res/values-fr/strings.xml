@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Learn French by Listening</string>
+    <string name="banner_ad_unit_id">ca-app-pub-2826997374472905/4858124075</string>
+    <string name="detail_answer">Réponses</string>
+    <string name="detail_article">Texte</string>
+    <string name="detail_next">QUES</string>
+    <string name="detail_pause">Pause</string>
+    <string name="detail_play">Écouter</string>
+    <string name="detail_back">Rewind</string>
+    <string name="detail_forward">Play</string>
+</resources>

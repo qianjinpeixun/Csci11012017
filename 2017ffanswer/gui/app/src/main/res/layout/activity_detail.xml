@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="detailViewModel"
+            type="org.maison.android.ffanswerEn.viewmodel.DetailViewModel"/>
+
+    </data>
+
+    <LinearLayout
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+
+            <Button
+                android:id="@+id/detailViewPlay"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="3dip"
+                android:layout_weight="1"
+                android:background="@color/buttonblue"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="@{detailViewModel::clickPlay}"
+                android:padding="5dip"
+                android:text="@{detailViewModel.textPlay}"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                />
+
+
+            <Button
+                android:id="@+id/detailViewBack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="3dip"
+                android:layout_weight="1"
+                android:background="@color/buttonblue"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="@{detailViewModel::clickBack}"
+                android:padding="5dip"
+                android:text="@string/detail_back"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                />
+
+            <Button
+                android:id="@+id/detailViewNext"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="3dip"
+                android:layout_weight="1"
+                android:background="@color/buttonblue"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="@{detailViewModel::clickNext}"
+                android:padding="5dip"
+                android:text="@string/detail_next"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                />
+
+            <Button
+                android:id="@+id/detailViewAnswer"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="3dip"
+                android:layout_weight="1"
+                android:background="@color/buttonblue"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="@{detailViewModel::clickAnswer}"
+                android:padding="5dip"
+                android:text="@string/detail_answer"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                />
+
+            <Button
+                android:id="@+id/detailViewArticle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="3dip"
+                android:layout_weight="1"
+                android:background="@color/buttonblue"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="@{detailViewModel::clickText}"
+                android:padding="5dip"
+                android:text="@string/detail_article"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                />
+
+
+        </LinearLayout>
+
+
+        <com.google.android.gms.ads.AdView
+            android:visibility="@{detailViewModel.showAdView ? View.VISIBLE : View.GONE}"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1.5"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id">
+
+
+        </com.google.android.gms.ads.AdView>
+
+        <WebView
+            android:id="@+id/web"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="40"
+            app:loadUrl="@{detailViewModel.url}"/>
+
+
+
+
+    </LinearLayout>
+</layout>
