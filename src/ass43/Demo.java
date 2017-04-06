@@ -6,29 +6,15 @@ import java.util.Scanner;
 
 public class Demo {
 
-	public static void printMessages() {
-		System.out.println("");
-		System.out.println("Welcome to Friendlist! What would you like to do(Press a number)");
-		System.out.println("1.  Print out all the users.");
-		System.out.println("2.  Print the total number of users.");
-		System.out.println("3.  Print out all the friends of a user.");
-		System.out.println("4.  Add a new user.");
-		System.out.println("5.  Remove a user.");
-		System.out.println("6.  Add a friend.");
-		System.out.println("7.  Remove a friend.");
-		System.out.println("8.  Print the user with most friends.");
-		System.out.println("9.  Find common friends between two friends");
-		System.out.println("10. Find the oldest friend for a user..");
-		System.out.println("11. Find the user with the oldest friend on FriendList.");
-		System.out.println("12. Quit.");
-	}
-
 	public static void main(String[] args) throws Exception {
 		Scanner kb = new Scanner(System.in);
 		int num = 0;
 		FriendList list = new FriendList();
+		// load the users information from users.txt
 		list.loadUsersFromFile();
+		// load the friend relationship information from friends.txt
 		list.loadFriendsFromFile();
+		// Start to receive user's choice
 		while (num != 12) {
 			printMessages();
 			num = kb.nextInt();
@@ -131,11 +117,31 @@ public class Demo {
 				System.out.println(" who was born in " + old.getBirthYear());
 			} else if (num == 12) {
 				list.writeUsersFile();
+				list.writeFirendsToFile();
 				System.out.println("Bye, all data have been updated into users.txt and friends.txt.");
 				break;
 			}
 		}
 
+	}
+
+	// this method if for printing the menu in the screen
+	// so the user can choose the functions
+	public static void printMessages() {
+		System.out.println("");
+		System.out.println("Welcome to Friendlist! What would you like to do(Press a number)");
+		System.out.println("1.  Print out all the users.");
+		System.out.println("2.  Print the total number of users.");
+		System.out.println("3.  Print out all the friends of a user.");
+		System.out.println("4.  Add a new user.");
+		System.out.println("5.  Remove a user.");
+		System.out.println("6.  Add a friend.");
+		System.out.println("7.  Remove a friend.");
+		System.out.println("8.  Print the user with most friends.");
+		System.out.println("9.  Find common friends between two friends");
+		System.out.println("10. Find the oldest friend for a user..");
+		System.out.println("11. Find the user with the oldest friend on FriendList.");
+		System.out.println("12. Quit.");
 	}
 
 }

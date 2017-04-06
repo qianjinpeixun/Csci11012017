@@ -1,32 +1,31 @@
 package ass43;
 
-public class Node2<next>
-{
+public class Node2 {
 	private User user;
 	private Node2 next;
-	public Node2(User u, Node2 front)
-	{
+
+	public Node2(User u, Node2 front) {
 		user = u;
 		next = front;
 	}
-	public User getData()
-	{
+
+	public User getData() {
 		return user;
 	}
-	public Node2 getNext()
-	{
+
+	public Node2 getNext() {
 		return next;
 	}
-	public void setData(User u)
-	{
+
+	public void setData(User u) {
 		user = u;
 	}
-	public void setNext(Node2 n)
-	{
+
+	public void setNext(Node2 n) {
 		next = n;
 	}
-	public String toString()
-	{
+
+	public String toString() {
 		return user + " --> ";
 	}
 }

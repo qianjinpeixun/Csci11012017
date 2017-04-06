@@ -1,0 +1,502 @@
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+1
+
+OUTPUT
+
+Users of FriendList:
+Hamed from Toronto --> Karen from Vancouver --> Sara from Toronto --> Ben from Montreal --> Amar from Halifax --> Xiao from St.John’s --> Chris from Truro --> Fred from Toronto --> Bob from Halifax --> .
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+2
+
+OUTPUT
+
+Total users on FriendList:9
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+3
+
+OUTPUT
+
+Enter a user name:Sara
+Sara's friends:
+Bob from Halifax --> Xiao from St.John’s --> Chris from Truro --> .
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+4
+
+OUTPUT
+
+Enter the user's name, their home town, and year of birth:Kali Halifax 1988
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+4
+
+OUTPUT
+
+Enter the user's name, their home town, and year of birth:Pier Dartmouth 1992
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+1
+
+OUTPUT
+
+Users of FriendList:
+Pier from Dartmouth --> Kali from Halifax --> Hamed from Toronto --> Karen from Vancouver --> Sara from Toronto --> Ben from Montreal --> Amar from Halifax --> Xiao from St.John’s --> Chris from Truro --> Fred from Toronto --> Bob from Halifax --> .
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+2
+
+OUTPUT
+
+Total users on FriendList:11
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+5
+
+OUTPUT
+
+Enter a user name:Pier
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+1
+
+OUTPUT
+
+Users of FriendList:
+Kali from Halifax --> Hamed from Toronto --> Karen from Vancouver --> Sara from Toronto --> Ben from Montreal --> Amar from Halifax --> Xiao from St.John’s --> Chris from Truro --> Fred from Toronto --> Bob from Halifax --> .
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+2
+
+OUTPUT
+
+Total users on FriendList:10
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+6
+
+OUTPUT
+
+To create a friend, you need to enter two user names
+Enter the name of the the first user: kali
+Enter the name of the second user: Bob
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+3
+
+OUTPUT
+
+Enter a user name:Bob
+Bob's friends:
+Xiao from St.John’s --> Sara from Toronto --> Hamed from Toronto --> Fred from Toronto --> Chris from Truro --> Kali from Halifax --> .
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+3
+
+OUTPUT
+
+Enter a user name:kali
+kali's friends:
+Bob from Halifax --> .
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+3
+
+OUTPUT
+
+Enter a user name:Kali
+Kali's friends:
+Bob from Halifax --> .
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+7
+
+OUTPUT
+
+To remove a friend, you need to enter two user names
+Enter the name of the the first user: Bob
+Enter the name of the second user: Kali
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+3
+
+OUTPUT
+
+Enter a user name:Bob
+Bob's friends:
+Xiao from St.John’s --> Sara from Toronto --> Hamed from Toronto --> Fred from Toronto --> Chris from Truro --> .
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+8
+
+OUTPUT
+
+the user with most friends is:Bob from Halifax
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+9
+
+OUTPUT
+
+To find common friends between two friends, you need to enter two user names
+Enter the name of the the first user: Bob
+Enter the name of the second user: Xiao
+Common Friends between Bob and Xiao are Sara from Toronto --> .
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+10
+
+OUTPUT
+
+Enter a user name:Bob
+the oldest friend for Bob is: Hamed from Toronto
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+11
+
+OUTPUT
+
+User(s) have the oldest friend:
+
+Their oldest friend is Kali from Halifax who was born in 1988
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+1
+
+OUTPUT
+
+Users of FriendList:
+Kali from Halifax --> Hamed from Toronto --> Karen from Vancouver --> Sara from Toronto --> Ben from Montreal --> Amar from Halifax --> Xiao from St.John’s --> Chris from Truro --> Fred from Toronto --> Bob from Halifax --> .
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+6
+
+OUTPUT
+
+To create a friend, you need to enter two user names
+Enter the name of the the first user: Xiao
+Enter the name of the second user: Kali
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+3
+
+OUTPUT
+
+Enter a user name:Kali
+Kali's friends:
+Xiao from St.John’s --> .
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+3
+
+OUTPUT
+
+Enter a user name:Xiao
+Xiao's friends:
+Bob from Halifax --> Sara from Toronto --> Amar from Halifax --> Kali from Halifax --> .
+
+Welcome to Friendlist! What would you like to do(Press a number)
+1.  Print out all the users.
+2.  Print the total number of users.
+3.  Print out all the friends of a user.
+4.  Add a new user.
+5.  Remove a user.
+6.  Add a friend.
+7.  Remove a friend.
+8.  Print the user with most friends.
+9.  Find common friends between two friends
+10. Find the oldest friend for a user..
+11. Find the user with the oldest friend on FriendList.
+12. Quit.
+12
+Bye, all data have been updated into users.txt and friends.txt.

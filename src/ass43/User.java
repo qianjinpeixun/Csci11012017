@@ -36,7 +36,7 @@ public class User {
 	}
 
 	public LinkedList2 getFriends() {
-		return friends;// ?
+		return friends;
 
 	}
 
@@ -70,13 +70,13 @@ public class User {
 	}
 
 	public User oldestFriends() {
-		User u=null;
+		User u = null;
 		int oldestBirthData = 2017;
 		for (int i = 0; i < friends.size(); i++) {
-			User user=friends.getUserAt(i);
-			if(user.getBirthYear()<oldestBirthData){
-				oldestBirthData=user.getBirthYear();
-				u=user;
+			User user = friends.getUserAt(i);
+			if (user.getBirthYear() < oldestBirthData) {
+				oldestBirthData = user.getBirthYear();
+				u = user;
 			}
 		}
 		return u;

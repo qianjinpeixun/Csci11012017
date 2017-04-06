@@ -6,6 +6,8 @@ import java.io.*;
 public class FriendList {
 	private LinkedList2 allUser;
 
+	//if the user choose to quit this program
+	//save the latest users into users.txt file
 	public void writeUsersFile() throws IOException {
 		File f = new File("users.txt");
 		FileWriter fw=new FileWriter(f);
@@ -21,6 +23,31 @@ public class FriendList {
 		w.close();
 		fw.close();
 	}
+	
+	//if the user quit this program, save the friend relationship to friends.txt file
+	public void writeFirendsToFile() throws IOException {
+		File f = new File("friends.txt");
+		FileWriter fw=new FileWriter(f);
+		BufferedWriter w=new BufferedWriter(fw);
+		PrintWriter pw=new PrintWriter(w);
+		
+		for(int i=0;i<allUser.size();i++){
+			User user=allUser.getUserAt(i);
+			pw.print(user.getName()+" ");
+			Node2 curr=user.getFriends().getFront();
+			while(curr!=null){
+				pw.print(curr.getData().getName()+" ");
+				curr=curr.getNext();
+			}
+			pw.println("");
+		}
+		
+		pw.close();
+		w.close();
+		fw.close();
+		
+	}
+	//at the very beginning, read the users.txt in order to create allUser object
 	public void loadUsersFromFile() throws IOException {
 		File f = new File("users.txt");
 		Scanner user = new Scanner(f);
@@ -33,6 +60,8 @@ public class FriendList {
 		}
 	}
 
+	//at the very beginning, read the friend relationship file 
+	//in order to create relationship
 	public void loadFriendsFromFile() throws IOException {
 		File f = new File("friends.txt");
 		Scanner ff = new Scanner(f);
@@ -46,12 +75,8 @@ public class FriendList {
 				user.addFriend(u);
 			}
 		}
-		
-		/*
-		 * for(int i=0;i<allUser.size();i++){
-		 * allUser.getUserAt(i).getFriends().enumerate(); }
-		 */
 	}
+
 
 	public FriendList() {// constructor
 		allUser = new LinkedList2();
