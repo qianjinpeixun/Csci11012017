@@ -1,0 +1,49 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 14 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lecture 14, CSCI 2132</h1>
+<h3>Control Structures</h3>
+<p>The syntax of the selection and iteration statements, including if, switch, while, do-while and for, is the same as the syntax of those in Java. The only difference is that the value of test expression is integer. Any non-zero value is treated as true, and 0 is treated as false. With this in mind, you can use these statements the same way you do in Java.</p>
+<p>There are some statements that we can use to exit from a loop. One statement is the break statement, which is the same as the unlabeled break statement in Java. The other one is the continue statement, which is the same as the Java continue statement. </p>
+<p>These two statements are also called jump statements, as they transfer control from one position of the program to another position.</p>
+<p>A jump statement that is not in Java is the goto statement. It can be used to jump to any statement in the same function, provided that statement has a label. This suggests, to learn how to use goto, we need learn how to define a label and the syntax of the goto statement itself. To define a label for a C statement, we follow this syntax:</p>
+<pre>identifier: statement</pre>
+<p>In the above syntax, a label is an identifier placed at the beginning of a statement. With the label defined, we can follow the syntax below to write a goto statement:</p>
+<pre>goto identifier</pre>
+<p>Let's see an example. In this example, we print the numbers from 1 to 10. We would normally use a for/while-loop for this, but we can also use goto.</p>
+<pre>#include &lt;stdio.h&gt;</pre>
+<pre>int main(void) {
+  int i = 1;</pre>
+<pre> loop: printf(&quot;%d\n&quot;, i);
+
+  i++;
+  if (i &lt;= 10)
+    goto loop;</pre>
+<pre>  return 0;
+}</pre>
+Though goto is in C, not in Java, which is new to people who learned Java not C, goto is in fact something very old. It is in assembly languages, basic, etc. It was once very popular to use goto. Why doesn't Java have goto? This is because removing goto is in favor of structured programming. One important theorem in structured programming is that any computable function can be coded using sequencing, repetition and selection. Another reason is that, without goto, it is easy to verify the correctness of a program, and programs without goto are easier to read and maintain.
+<p>Now, the question is, to use or not to use goto. On the one hand, goto makes the code hard to read and modify, as it can jump to anywhere in the same function. On the other hand, sometimes goto can be used to improve efficiency. The following is an example in which using goto improves efficiency:</p>
+<pre>while (...) {
+  switch(...) {
+    ...
+    goto loop_done;
+  }
+  ...
+}
+
+loop_done: ...</pre>
+<p>Here we cannot replace goto with break. This is because this statement is inside switch, and if we use break here, it will only break out of the switch, not the while loop. To avoid using goto, we thus have to use additional variables as flags, and add them into the test statement of while. This would be less efficient.</p>
+<p>There are some other cases for which using goto is more efficient, and I will post optional reading materials. You can also see goto statements frequently in machine-generated code, such as compilers that choose to generate C code for high-level languages. Thus goto is indeed useful.</p>
+<p>For this course, in order to develop good programming habit, use goto only when you need jump out of nested loops (including switch). </p>
+<p>To summarize, in this and the previous lectures, we learned the difference between C and Java for operators, expressions and control structures. This way we can start writing C programs that use these features right away. We will see some examples in labs. Later on, when we learn features of C that are not in Java, we will see many examples that make use of control structures as well.</p>
+<p>After this, I talked about <a href="sdlc.pdf">SDLC, Testinga and Debugging</a>.<br>
+</p>
+<pre>&nbsp;   
+</pre>
+</BODY>
+
+</HTML>

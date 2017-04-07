@@ -1,0 +1,73 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 5 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lecture 5, CSCI 2132</h1>
+<h3>More Commands</h3>
+<p>There are some other related commands. If you are in multiple groups, you can use the command chgrp to change a file's group. </p>
+<p>To change a file's owner, you can use chown. However, on bluenose, only the system administrator can run this command. If you installed Linux on your own PC, you can try this. </p>
+<p>When you are in multiple groups, only one group can be the effective group of your shell at any time. When you create a file from the shell, the file group is the effective group of your shell. To change your effective group, use the command newgrp. Only the system administrator can permanently alter your login shell's effective group. You may create a shell with a different effective group ID using newgrp.</p>
+<p>Since on bluenose, without the help of an administrator, you wouldn't be able to be in multiple groups to make use of these commands, you might not be able to test these commands till you get the support from an administrator (say, for a big course project that requires collaboration). However, it is still good to know these commands so that you will know how to make use of them when needed.</p>
+<h2>Redirection, Filename Substitution and Links</h2>
+<p>Recall that previously we learned that there are three standard UNIX channels: stdin, stdout and stderr. By default these channels are the terminal that the user is using. Let's now learn how to change the default I/O channels.</p>
+<h3>Output Redirection</h3>
+<p>Let's learn how to perform output redirection, which stores the output of a process to a file. With this, we are able to save the output of a program for later use. The syntax is</p>
+<pre>$command &gt; filename</pre>
+<p>With this, the shell creates the file with filename (if it doesn't exist), or overwrite its previous content (if it exists), and redirect the output of command into this file.</p>
+<p>For example, suppose that the current working directory is the ~/csci2132 directory (Here ~ is a feature of the Bash shell; it is the short form of the pathname of your home directory). Then, if I would like to list the files in subdirectory lab1 and store them in a text file named listing, I can enter</p>
+<pre>ls lab1 &gt; listing</pre>
+<p>If we would like to append the standard output of a command to an existing file, we can follow the syntax below:</p>
+<pre>$command &gt;&gt; filename</pre>
+<p>If file filename does not exist, this command will also create it.</p>
+<p>For example, if I would like to get a list of files stored in lab2, and add them to the file listing, I can enter</p>
+<pre>ls lab2 &gt;&gt; listing </pre>
+<h3>Input Redirection</h3>
+<p>     Input redirection redirects standard input to a file. This allows you to prepare for a process' input and save it in a file for later use, which is handy when you test the programs (you wrote) that takes as input a sequence of numbers or characters from the keyboard. The syntax of input redirection is</p>
+<pre>$command &lt; filename</pre>
+<p>This executes command, using the content of the file filename as its stdin. One useful example is to use the UNIX mail command to send an email, using a text file as the content of the email. For example, to send the content of HelloWorld.java in an email to your email CSID@cs.dal.ca, you can enter the following command on bluenose</p>
+<pre>$mail username &lt; HelloWorld.java</pre>
+<p>If you would like to send it to an email address that is not related to the server that you use, you need to specify the full email address:</p>
+<pre>$mail your-full-email-address &lt; HelloWorld.java</pre>
+<h3>Error Redirection</h3>
+<p>Error redirection stores the error message of a process to a file. The syntax is</p>
+<pre>$command 2&gt; filename</pre>
+<p>There cannot be any space between 2 and &gt;. An example:</p>
+<pre>$rm x 2&gt; error</pre>
+<p>If the file x does not exist in the current working directory, an error message will be written to the file error. Again, &gt;&gt; can be used to append the error message to an existing file:</p>
+<pre>$command 2&gt;&gt; filename</pre>
+<h3>More About Redirection</h3>
+<p>File descriptors of stdin, stdout and stderr are 0, 1 and 2, respectively. That's what the 2 means in error redirection. Similarly, we can also use 0 and 1 in input and output redirection:</p>
+<pre>command 0&lt; filename
+command 1&gt; filename</pre>
+<p>These are equivalent to input/output redirection we learned before.</p>
+<h3>Filename Substitution (Wildcards)</h3>
+<p>Sometimes we want to perform operations on a set of files. The shell provides a function called filename substitution for this. </p>
+<p>Filename substitution makes use of wildcards, which are special characters expanded by the shell to specify sets of files. Any word in the command line that contains wildcard characters is treated as a pattern and is replaced by an alphabetically sorted list of all matching filenames. There are several types of wildcards</p>
+<ul>
+  <li>?: matches any single character</li>
+  <li>*: matches any string, including the empty string</li>
+  <li>[...]: Matches any single character in the set contained within the brackets. Some examples and additional rules are
+    <ol>
+      <li>[0-9]: any digit between 0 and 9</li>
+      <li>[a-zA-Z]: any English alphabet character</li>
+      <li>[unix]: matches either u, n, i or x</li>
+      <li>!: complements a set</li>
+    </ol>
+  </li>
+</ul>
+<p>Some examples:</p>
+<p>The following command will list any files whose names end with .java in the lab1 directory we created for Lab 1:</p>
+<pre>ls ~/csci2132/lab1/*.java</pre>
+<p>The following command will list any file, in the same directory, whose name start with Hell, followed by any single character, which is then followed by World.java</p>
+<pre>ls ~/csci2132/lab1/Hell?World.java</pre>
+<p>The following command will list files whose names begin with a digit in the current working directory:</p>
+<pre>ls [0-9]*</pre>
+<p>The following command will list file whose names do not begin with a digit in the current working directory:</p>
+<pre>ls [!0-9]*</pre>
+<p>&nbsp;</p>
+</BODY>
+
+</HTML>

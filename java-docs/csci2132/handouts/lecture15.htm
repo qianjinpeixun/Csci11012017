@@ -1,0 +1,116 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 15 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lecture 15, CSCI 2132</h1>
+<h2>Basic Types</h2>
+<h3>Integer Types</h3>
+<p> We already learned that we can use int to declare variables. First, we will learn that we can add specifiers before int to declare new integer types.</p>
+<p>The first set of specifiers are &quot;signed&quot; and &quot;unsigned&quot;. An unsigned int is always non-negative, while in a variable of type signed int, 1 bit is used to indicate whether this variable is negative or not. Therefore, the maximum values that a signed int and an unsigned int can take are different. These two specifiers are not in Java.</p>
+<p>The second set of specifiers are &quot;short&quot; and &quot;long&quot;, and they are used to indicate the sizes (i.e., the number of bits required to store a variable of said type) of the integer type. Thus integer types come in different sizes. We will learn more about the sizes later.</p>
+<p>With these specifiers, we can define different integer types. The following are six distinct combinations, from the smallest in size to the largest in size:</p>
+<pre>short int
+unsigned short int
+int
+unsigned int
+long int
+unsigned long int</pre>
+<p>The order of specifiers does not matter. For example, the following two integer types are equivalent:</p>
+<pre>unsigned long int
+long unsigned int</pre>
+<p>We can also drop the keyword int when a specifier is present. That is, we can abbreviate the names of integers types by dropping &quot;int&quot;. This is popular but not required. For example, these two integers types are equivalent</p>
+<pre>unsigned long
+unsigned long int</pre>
+<p>The two integer types below are also equivalent:</p>
+<pre>long
+long int</pre>
+<p>This is different from Java. In Java, you have to use &quot;long&quot; to declare a long integer and you cannot declare variables of &quot;long int&quot;. In C, both are valid.</p>
+<p>The range of values represented by each integer type varies between machines. For the type int, typically one machine word is used to store an int variable.</p>
+<p>Let's take a 16-bit machine for example (this would be as old as an IBM 286). A typical compiler for such a machine would use 16 bits to represent an int value. The most significant bit will be used to indicate whether this value is negative or not. That is, this bit is 1 if and only if this value is negative. Thus, the following 2<sup>15</sup> values can be used to store 0 and non-negative integers: 0000000000000000, 0000000000000001, 0000000000000010, ..., 0111111111111111. This way the maximum value of int is 2<sup>15</sup>-1 = 32,767. Similarly, 2<sup>15</sup> values can be used to store negative integers. Hence the minimum value would be -2<sup>15</sup> = -32,768.</p>
+<p>For the same machine, an unsigned int would also typically use one word. Since all the 16 bits can be used to represent the values,  the maximum value is 2<sup>16</sup>-1 = 65,535.</p>
+<p>Why doesn't C require int variables to be stored in a certain fixed number of bits, regardless of the platform (Java does require an int to be 32-bit long)? The reason is that for C, efficiency is important. In the computer organization course, we will learn that a word is a fixed group of bits that are handled as a unit by the CPU instruction set. Thus, with the flexibility granted by the C standard, C compilers can choose to store an int variable in a machine word, regardless of the word size, to maximize efficiency.</p>
+<p>What about the sizes of short/long? C does not specify the sizes of short/long, either. Some rules are: int cannot be shorter than short int, and long int cannot be shorter than int. This flexibility again lets designers of C compilers to come up with the most efficient implementation for a specific platform.</p>
+<p>How do programmers determine the range of int then? There are some macros defined in the standard C library. If you include &lt;limits.h&gt; in your program (i.e., use #include &lt;limits.h&gt;), then you can use the following two macros as the minimum and maximum values that can be stored in an int variable on your platform:</p>
+<pre>INT_MIN
+INT_MAX</pre>
+<p>There are similar macros defined for long, short, etc. in the same header file.</p>
+<p>In C integer constants are considered to be of the type int by default, if they are not out of the range of int. If they are, a type with a larger range (such as long int) will be used. The rules regarding which types should be used are different in C89 and C99. If you are interested, read the textbook for details. For the compiler to treat a constant as long, we can explicitly suffix the constant with either L or l (the character l, not digit 1). An example: 15L</p>
+<h3>Floating Types</h3>
+<p>There are three floating types in C: float for single-precision floating-point numbers; double for double-precision floating-point numbers and long double for extended-precision floating-point numbers. How much precision each type provides is implementation-defined. Most modern compilers choose to follow the IEEE standard 754. There are more details in the textbook, but in most cases, it is enough to know that float keeps 6 significant digits while double keeps 15 significant digits.</p>
+<p>Floating constants are double by default.</p>
+<h3>Character Types</h3>
+<p>In C, characters are declared to be of the type char. Each char variable is stored in 8 bits (This is different from Java, in which the char type requires 16 bits so that is can store a Unicode).</p>
+<p>For example, we can declare and initialize a char variable ch as follows (pay attention to the single quotation marks for char constants):</p>
+<pre>char ch = 'a';</pre>
+<p>C treats characters as small integers, which are ASCII values on most machines. For example, the following piece of code can be used to convert a lowercase letter to uppercase:</p>
+<pre>if ('a' &lt;= ch &amp;&amp; ch &lt;= 'z')
+  ch = ch - 'a' + 'A';</pre>
+<p>The conversion specification used for char in printf and scanf is %c. </p>
+<p>In scanf, it is important to know that %c does not skip white-space characters before reading a character. Therefore, the following two statements are NOT equivalent:</p>
+<pre>scanf(&quot;%c&quot;, &amp;ch);
+scanf(&quot; %c&quot;, &amp;ch);</pre>
+<p>C programmers frequently use the getchar function to read a character. For example, the following statement will read a character and assign it to a char variable ch:</p>
+<pre>ch = getchar();</pre>
+<p>This is equivalent to the following scanf statement:</p>
+<pre>scanf(&quot;%c&quot;, &amp;ch);</pre>
+<p>It is advisable to use getchar in the above case as getchar is fast and simple. It does not require extra time to do pattern matching as required for scanf.</p>
+<p>Let's see an example. We now write a program that converts one line of message to all uppercase characters. This is an example for using loop as well. This program is designed as a UNIX filter, so that it will not prompt for user input. It reads one line from the user, and then prints the result.</p>
+<pre>#include &lt;stdio.h&gt;</pre>
+<pre>int main(void) {
+  char ch;</pre>
+<pre>  while ((ch = getchar()) != '\n') {
+    if (ch &gt;= 'a' &amp;&amp; ch &lt;= 'z')
+    ch = ch -'a' + 'A';</pre>
+<pre>    printf(&quot;%c&quot;, ch);
+  }</pre>
+<pre>  printf(&quot;\n&quot;);</pre>
+<pre>  return 0;
+}</pre>
+<p>One interesting part of this program is the following test condition in the while loop:</p>
+<pre>(ch = getchar()) != '\n'</pre>
+<p>One question is: are the brackets enclosing ch=getchar() necessary? The answer is yes. This is because (in)equality operator has higher precedence than assignment. Even though it is often sufficient to consult a precedence table when we program, this case is very frequent so we are expected to know this in order to avoid bugs.</p>
+<h3>Type Conversions</h3>
+<p>Regarding types, C is more flexible than Java. For example, the following line of code is valid in C:</p>
+<pre>float f = 3.4;</pre>
+<p>We however know that 3.4 without any suffix is a double constant. This line of code would be invalid in Java. What happens when we write a line of code like this? To answer this, we need learn what implicit conversions do in C.</p>
+<p>Implicit conversions are type conversions handled by compilers. That is, you need not specify conversion explicitly in your code. There are two cases in which implicit conversions take place.</p>
+<p>First, when the operands in an arithmetic or logical expressions don't have the same type. In this case, operands are promoted to the &quot;narrowest&quot; type that will safely accommodate the values of the operands. Look at the following example:</p>
+<pre>float f;
+double d;
+int i;
+d = d + f;
+f = f + i;</pre>
+<p>In the first arithmetic expression, f is promoted to double. In the second, i is promoted to float.</p>
+<p>The other case in which implicit conversion takes place is when the type of the expression on the right-hand side of an assignment does not match the type of the variable on the left side. In this case, the right side is converted to the left side. If you write the following line of code:</p>
+<pre>int i = 8.92;</pre>
+<p>Then the value of i after this line is executed is 8.</p>
+<p>Sometimes we might want to explicitly tell the compiler to convert a variable from one type to another. For this we need learn how to use type casting, which tells the compilers to treat a variable as of a different type. The syntax is:</p>
+<pre>(type) expression</pre>
+<p>We can make use of this to compute the fractional part of a float value:</p>
+<pre>float f, frac_part;
+frac_part = f - (int)f;</pre>
+<p>From this example, we can see that type casting can be used to override the compiler and force it to do conversations that we want. Let's see more examples:</p>
+<pre>float quotient;
+int dividend = 5;
+int divisor = 4;
+quotient = dividend / divisor;
+quotient = (float) dividend / divisor;
+quotient = (float) (dividend / divisor);
+quotient = 1.0f * dividend / divisor;</pre>
+<p>What value would these four statements assign to quotient? Answers: 1, 1.25, 1 and 1.25.</p>
+<h3>Type Definitions Using typedef</h3>
+<p>We can use the keyword typedef to assign alternative names to existing types. The syntax is</p>
+<pre>typedef typename alternative_name</pre>
+<p>One example:</p>
+<pre>typedef int Bool;
+Bool flag;</pre>
+<p>In this example, by defining Bool to be an alternative name to int, we make it clear what kind of values we store in flag. This makes our program more understandable. In the future, we will learn how to define our own abstract data types, and we often use typedef to define alternative names for them.</p>
+<h3>&nbsp;</h3>
+<h2>&nbsp;</h2>
+<p>&nbsp;</p>
+</BODY>
+
+</HTML>

@@ -1,0 +1,37 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 17 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lectures 17, CSCI 2132</h1>
+<h3>Multidimensional Arrays</h3>
+<p>Arrays can have any number of dimensions. To declare a multidimensional array, we need specify the length of each of its dimensions. For example, the following line of code defines a 2D array:</p>
+<pre>int m[5][9];</pre>
+<p>2D arrays can be used to represent a matrix or a table. For example, m can be used to represent a 5x9 table, whose rows are numbered 0, 1, 2, 4 and whose columns are numbered 0, 1, 2, 3, 4, 5, 6, 7, 8.</p>
+<p>We still use array subscripting to access an element of a multidimensional array. For example, m[1][4] is stored in row 1 and column 4 (recall that row and column numbers start with 0).</p>
+<p>How is a 2D array stored in  memory? We know that most computer systems use linear memory, i.e., data in memory are stored as a sequence of bytes. Thus we need to store the content of a 2D array as a sequence. Therefore, the elements in a 2D array are stored in row-major order. Take the array m for example. Its elements will be stored physically in memory in this order:</p>
+<pre>m[0][0], m[0][1], ..., m[0][8], m[1][0], m[1][1], .., m[1][8], ......, m[4][0], m[4][1], ..., m[4][8]</pre>
+<h3>Variable-Length Arrays (C99)</h3>
+<p>So far we require array lengths to be constants. However, sometimes we do not know the array length in advance. In C99, variable-length arrays are introduced for this (there are no variable-length arrays in C89 or earlier). The length of a VLA is a non-constant expression. The following code snippet declares a VLA and assigns values to it:</p>
+<pre>int len, i;
+printf(&quot;Enter the number of integers:&quot;);
+scanf(&quot;%d&quot;, &amp;len);
+
+int array[len];
+printf(&quot;Enter %d numbers:&quot;, len);
+for (i = 0; i &lt; len, i++)
+  scanf(&quot;%d&quot;, &amp;array[i]);
+</pre>
+<p>It is necessary to assign a value to len before we use it as the length when declaring a VLA. </p>
+<p>There is homework for you: rewrite the binary search program using a VLA so that the user can first enter the array length and then the values stored in the array.</p>
+<p>VLAs can be multidimensional, but they cannot have initializers.</p>
+<p>We first saw an example that makes use of both variable-length arrays and 2D arrays. The example is to test whether a matrix is a Latin square. An n by n matrix is a Latin square if each row is a permutation of 1, 2, ..., n and each column is a permutation of 1, 2, ..., n. The most interesting part of our program is how to check whether a row is a permutation of 1, 2, ..., n, i.e., whether each number from 1, 2, ..., n appears in this row exactly once. For this we use a bool (this requires stdbool.h in C99; we could also simply declare it to be int) array named visited of length n, whose entries are initially false. During the process in which we scan a row from left to right, visited[i] stores true if and only if we have seen the value (i+1) during our scan. This way we can check whether a row is a permutation of 1, 2, ..., n in one scan. The source code can be found at:</p>
+<pre>/users/faculty/prof2132/public/latin.c
+</pre>
+<p>It is interesting to know that the solution to a Sudoku puzzle is a 9 by 9 Latin square with additional constraints regarding regions of the game board.</p>
+<p>&nbsp;</p>
+</BODY>
+
+</HTML>

@@ -1,0 +1,32 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 25 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+Today I first finished the <a href="largeprogram.pdf">slides</a> on writing large programs.
+<p>All the files that are used in the example in the above slides can be found in directory:</p>
+<pre>users/faculty/prof2132/public/make 
+</pre>
+<p>I suggest you to copy these files to your own directory and try the make commands discussed in class.</p>
+<h2>Dynamic Storage Allocation and Linked Lists</h2>
+<p>The C language provides features for programmers to access data by memory address, which facilitates low-level programming. C programmers are supposed to know how to do memory management. We will spend several lectures on this. In the first lecture, we will use the implementation of a linked list data structure as an example. Before we learn storage allocation and linked lists, we first learn an aggregate type called structures.</p>
+<h3>Structures</h3>
+<p>In C a structure is a collection of data items, and each data item is called a member of the structure. Members of the same structure can possibly be of different types. This is the major difference between a structure and an array, as an array contains elements of the same type.</p>
+<p>In a structure, each member is referred to by a name. This is another difference, since in arrays, elements are referred to by subscripts/indices.</p>
+<p>Structures can be used to do many things. First, it is logical to use a structure to model records such as student records, which many contain different types of data such as names, IDs and birth dates. Second, they are building blocks for many data structures such as linked lists and trees.</p>
+<p>The following piece of code declares a structure that can be used to store a student record:</p>
+<pre>struct student {
+  int number;
+  char name[26];
+  char username[11];
+} x, y;</pre>
+<p>Here we assume that a student number is an integer. In this declaration, student is the tag of this structure type. A tag is optional, but with a tag, we can use &quot;struct tag variable_name;&quot; to declare more variables of this structure type after this type definition, as shown below. This declaration also defined two variables, x and y, of the type struct student. This variable list is also optional. Now let's make use of the tag to declare another structure variable, a pointer and an array:</p>
+<pre>struct student z, *p, first_year[200];</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</BODY>
+
+</HTML>

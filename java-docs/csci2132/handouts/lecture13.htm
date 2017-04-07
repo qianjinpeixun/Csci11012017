@@ -1,0 +1,59 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 13 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lecture 13, CSCI 2132</h1>
+<p>Let's look at the example of division (when the result is negative) again. In C89 or earlier, this is an implementation-defined behavior. CPUs typically have an instruction for division, and when one operand is negative, some CPUs will round down the result, and some CPUs will round up the result. By making this implementation-defined, compilers on a specific platform can choose to be consistent with the corresponding CPU instruction, so that only one instruction is used when integer division is performed. This maximizes efficiency, but sacrifices portability.</p>
+<p>The C99 standard, however, chooses to specify this. In C99, the result of integer division is always rounded toward 0. Therefore, -10/7 is -1. Why does C99 choose to specify this? This is because by 1999, the integer division instruction in most CPUs chooses to round toward 0, except in some old architecture. Thus  the C99 standard decided to specify this to improve portability, knowing that it is very unlikely to decrease efficiency in modern CPUs. </p>
+<p>By the way, the result of integer division in Java is always rounded toward 0.</p>
+<h3>Assignment Operators</h3>
+<p>Operators =, +=, -=, *=, /=, %= are exactly the same as those in Java.</p>
+<h3>Increment / Decrement Operators</h3>
+<p>The ++/-- operators work the same as those in Java. You are expected to know the difference between i++ and ++i (there are practice written questions on this).</p>
+<h3>Expression Evaluation</h3>
+<p>As in Java, there are also rules of precedence and associativity regarding expression evaluation, when multiple operators are used in one expression. For operators in both C and Java, the rules of precedence and associativity are the same in both languages. These rules allow us to break any C expression into subexpression, to determine uniquely where the parentheses would go if the expression were fully parenthesized. However, they do not always determine the value of expression, which may depend on the order in which its subexpressions are evaluated. Let's look at the following example (a, b, c are all int variables):</p>
+<pre>a = 5;
+c = (b = a + 2) - (a = 1);</pre>
+<p>There are two subexpressions. If they are evaluated from left to right, then after these two statements, the value of c is 6. If they are evaluated from right to left, the value of c is 2.</p>
+<p>Another example:</p>
+<pre>i = 2;
+j = i * i++;</pre>
+<p>Then depending on the order, j could be 4 or 6.</p>
+<p>In Java, subexpressions are evaluated from left to right. However, in C, the order of subexpression evaluation is unspecified; they are not specified by the C language standard. There is a difference between unspecified behaviors and implementation-defined behaviors: an unspecified behavior is not required to be documented by the implementation, while an implementation-defined behavior is.</p>
+<p>The textbook mentioned that the order of subexpression evaluation is undefined. This is however a misuse of terminology: when talking about undefined behaviors, we are referring to the fact that C does not define how to handle some errors, and an implementation can choose the most efficient way of handling them. Division by 0 is an example.</p>
+<p>Back to order of subexpression evaluation: when the order matters, we are supposed to use multiple expressions. The first example above can be rewritten as:</p>
+<pre>a = 5;
+b = a + 2;
+a = 1;
+c = b - 2;</pre>
+<h3>Logical Expressions</h3>
+<p>The operators include the relational operators &lt;, &gt;, &lt;=, &gt;=; the equality operators ==, !=, and the logical operators !, &amp;&amp;, ||.</p>
+<p>It is important to know that in C, the result of evaluation of a logical expression is of type int: if the expression is false, its value is 0. If the expression is true, its value is 1.</p>
+<p>This is the source of many errors for programmers who do not pay attention to this. For example, the expression a &lt; i &lt; b is valid in C (it is invalid in Java). However, it is not equivalent to (a &lt; i) &amp;&amp; (i &lt; b). Why? Suppose that a = 5, i = 4, and b=2. Then a &lt; i &lt; b is equivalent to (a &lt; i) &lt; b. Since a &lt; i is false, its value is 0. Thus this expression is evaluated as 0 &lt; b, which is 1 (true). However, (a &lt; i) &amp;&amp; (i &lt; b) is 0.</p>
+<p>&quot;Short-circuit&quot; evaluation applies to &amp;&amp; and ||, as in Java.</p>
+<p>There is no boolean type in C89 or earlier. Thus whenever an expression is used as a test expression (say, the if-test), if the expression evaluates to 0, it is treated as false. If it evaluates to non-zero, it is considered as true.</p>
+<p>In C99, there is a boolean type called _Bool. For example, you can define</p>
+<pre>_Bool flag;</pre>
+<p>This type is an integer type that can only be assigned 0 or 1. Thus if we write the following statement</p>
+<pre>flag = 5;</pre>
+<p>After this, flag will have value 1, since 5 is treated as true.</p>
+<p>In C99, the &lt;stdbool.h&gt; header defines the following three macros:</p>
+<ul>
+  <li>bool, a macro for _Bool</li>
+  <li>true, a macro for 1</li>
+  <li>false, a macro for 0</li>
+</ul>
+<p>Thus, if we use #include &lt;stdbool.h&gt; in our program, we can write code like</p>
+<pre>bool flag;
+flag = true;</pre>
+<p>This looks exactly the same as the bool type in C++.</p>
+<h3>&nbsp;</h3>
+<p>&nbsp;</p>
+<p><br>
+</p>
+</BODY>
+
+</HTML>

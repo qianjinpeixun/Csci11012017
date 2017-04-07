@@ -1,0 +1,78 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 8 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lecture 8, CSCI 2132</h1>
+<p>The following two commands are equivalent, though one uses wildcards and the other uses regular expressions:</p>
+<pre>ls *.java
+ls | grep '\.java$'</pre>
+<p>The following command will list all the files in /bin whose names contain exactly one -:</p>
+<pre>ls /bin | grep '^[^-]*-[^-]*$'</pre>
+<p>This cannot be done using wildcards. </p>
+<p>Then, why do we need wildcards now that we can use regular expressions to perform these tasks? There are a few reasons. First, for the example of listing java files, one ls command is enough with wildcards, and we need not use pipes, so this is simpler. Second, wildcards can also be used with many other commands such as cp to perform operations on a set of files, while regular expressions can only work with some commands such as grep.</p>
+<p>There are some options that can be used with grep:</p>
+<ul>
+  <li>-n: Outputs lines preceded by line numbers</li>
+  <li>-i: Ignores case</li>
+  <li>-v: Outputs lines that don't match</li>
+  <li>-w: Restricts matching to whole words only</li>
+</ul>
+<h3>Extended Regular Expressions</h3>
+<p>Extended regular expressions include additional metacharacters. They are optional for this course, and thus will not be covered in exams. Read the optional reading materials for this course if you are interested.</p>
+<p>Syntax of BRE/ERE vary between systems. What we learn here will work for almost all UNIX distributions. To find out all the rules for regular expressions in your UNIX/Linux distributions, enter</p>
+<pre>man re_syntax</pre>
+<h2>Shells</h2>
+<h3>Why Separating the shell from the Kernel</h3>
+<p>There are advantages of separating the shell from the kernel. First, if something goes wrong in the shell, it won't bring down the system. Other programs can still be running. Second, shells can be replaced without rewriting the kernel. Thus it is easy to add new functionality by writing a new shell. This is good software development practice.</p>
+<h3>Shell Functionality</h3>
+<p>The following is a list of shell functionality:</p>
+<ul>
+  <li>Built-in commands</li>
+  <li>Scripts</li>
+  <li>Variables</li>
+  <li>Redirection</li>
+  <li>Wildcards</li>
+  <li>Pipes</li>
+  <li>Sequences</li>
+  <li>Subshells</li>
+  <li>Background processing</li>
+  <li>Command substitution</li>
+</ul>
+<p>We learned some of these before, and we will learn some in this lecture. We will learn the rest when we learn shell scripting. </p>
+<h3>Popular Shell Programs</h3>
+<p>There are four popular shells. Here we also give the common location of these shells when introducing them.</p>
+<ul>
+  <li>Bourne shell (/bin/sh): This shell replaced the original Thompson shell (which was the first UNIX shell).</li>
+  <li>Korn (/bin/ksh)</li>
+  <li>C shell (/bin/csh)</li>
+  <li>Bash shell (/bin/bash)</li>
+</ul>
+<p>The Bash shell, or the Bourne Again shell, provides backward compatibility with the Bourne shell. It also includes most useful features of C/Korn shells. It is licensed under GPL, and is thus open-source. Most UNIX systems have it. For this course, we will focus on Bash.</p>
+<p>When you open a terminal and login, the default login shell is started, to accept your command. On bluenose, the default login shell is bash. The command chsh can be used to change your login shell. On many servers (including bluenose), however, users are not allowed to change their default login shell by themselves. You can ask the root user to change this for you, or you can run bash each time after you login (or you can make use of a shell script).</p>
+<h3>Commands</h3>
+<p>There are two types of commands. The built-in commands are commands that a shell recognizes and executes internally. Thus their code is in the shell program. Since their code is already in the memory when shell is running, it is fast to execute them. It is however difficult to replace these commands as they are part of the shell. Therefore, these commands are typically for simple tasks that we use frequently. The commands cd and logout are internal commands.</p>
+<p>Another useful built-in command is echo. It displays all of its argument to stdout. This is useful when we need to create a file with a single line (output redirection). We also use this to display the values of shell variables, and it is thus used by shell programs extensively to print output.</p>
+<p>External commands are executable programs that are stored in the directory hierarchy, separate from the shell. Some examples are ls, grep, sort, cut, uniq.</p>
+<h3>Variables</h3>
+<p>Behaviors of shells are influenced by several string-valued shell variables. The metacharacter $ is used to expand the value of a variable. We will learn how to create a variable when learning shell scripting. For now, let's learn some built-in variables that are used by the shell:</p>
+<p>The variable SHELL stores the pathname of the shell. If we enter </p>
+<pre>echo $SHELL
+</pre>
+<p>on bluenose, we will see </p>
+<pre>/bin/bash</pre>
+<p>The variable HOME stores the absolute pathname of your home directory. Thus the following three commands are equivalent</p>
+<pre>cd
+cd ~
+cd $HOME</pre>
+<p>The variable PATH stores a list of directories for the shell to search for external commands. When we run a command without giving its full pathname, the shell first checks whether the command is built-in. If not, the shell searches the directories whose names are stored in $PATH for this command. That's how the shell locates the programs for external commands.</p>
+<h3>&nbsp;</h3>
+<pre><br>
+</pre>
+<p><br>
+</p>
+</BODY>
+
+</HTML>

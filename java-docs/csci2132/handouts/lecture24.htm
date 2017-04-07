@@ -1,0 +1,47 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 24 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lecture 24, CSCI 2132</h1>
+<p>Another function is strcat, and it appends string s2 to s1 and returns s1:</p>
+<pre>char* strcat(char *s1, const char *s2);</pre>
+<p>Again, make sure that s1 points to a sufficiently large block of memory.</p>
+<p>The third function is strcmp, which compares strings s1 and s2 lexicographically. Sometimes people use the term alphabetically, but lexicographically would be more precise. To determine whether s1 is less than s2 in lexicographic order, we find the first position at which these two strings differ, and the result of the comparison is the result of comparing the two characters from these two strings stored at this position. </p>
+<p>If s1 &lt; s2, this function returns a negative value. If s1 == s2, this function returns 0. Otherwise, a positive value is returned. </p>
+<p>For example, if we call strcmp(&quot;large&quot;, &quot;little&quot;), then a negative value will be returned. This is because &quot;large&quot; is lexicographically smaller than &quot;little&quot;. These two words start with the same character, but for the next position, we have a &lt; i.</p>
+<p>Finally, one common string function is strlen, which computes the length of a string:</p>
+<pre>size_t strlen(const char *s1);</pre>
+<p>What's new here is the type size_t: This is an implementation-defined unsigned integer type used for the size of objects in memory. It is implementation-defined because its range depends on the platform. We often assign the return value of strlen it to an int variable, unless we are processing very large strings that require gigabytes to store.</p>
+<h3>Command-Line Arguments</h3>
+<p>Using what we learned about strings, we can now process command-line arguments of a program. In C, these are passed as an array of strings. To make use of command-line arguments, we should define the main function in the following form:</p>
+<pre>int main(int argc, char* argv[]) {
+...
+}
+</pre>
+<p>Here, argc means &quot;argument count&quot; and argv means &quot;argument values&quot;. Thus, argc stores the number of arguments, while argv stores an array of char pointers, and each pointer points to a string that stores an argument.</p>
+<p>Here, argc means &quot;argument count&quot; and argv means &quot;argument values&quot;. Thus, argc stores the number of arguments, while argv stores an array of char pointers, and each pointer points to a string that stores an argument.</p>
+<p>Let's explain this in greater details using an example. Here we write a program called sortwords, and this program sorts the command-line arguments lexicographically, and prints them in sorted order. Say, we invoke this program using the following command:</p>
+<pre>./sortwords orange apple banana</pre>
+<p>The following figure shows the content of argv:</p>
+<pre>argv
+argv[0] -------&gt; ./sortwords\0
+argv[1] -------&gt; orange\0
+argv[2] -------&gt; apple\0
+argv[3] -------&gt; banana\0
+argv[4] stores a NULL pointer</pre>
+<p>Here a NULL pointer is a special pointer that points to nothing. In this example, we have argc = 4, which is the number of command-line arguments, including the pathname of the command itself (&quot;./sortwords&quot;). </p>
+<p>We can use array/string notation that we learned before to manipulate this array. For example, argv[2][4] stores the character 'e'.</p>
+<p>For the implementation of sortwords, see:</p>
+<pre>/users/faculty/prof2132/public/sortwords.c</pre>
+<p>Our implementation uses insertion sort. Pay attention to two things: First, the subscripts we use in our code. Here we sort argv[1], argv[2], ..., argv[argc-1], not the entire argv array. Second, we use strcmp to compare strings.</p>
+<p>We will see more examples on strings when we learn how to allocate strings dynamically.</p>
+<h2>Writing Large Programs</h2>
+<p>Previously we learned that the primary goal of this course is to learn how to &quot;program in the large&quot;. A large program consists of many modules, and programmers work on different modules of the same program. It is logical to use one or more files for each module, which facilitates collaboration and reusing.</p>
+<p>Please read the <a href="largeprogram.pdf">slides</a> that I used in class. I have talked about pages 1-6.</p>
+<p>&nbsp;</p>
+</BODY>
+
+</HTML>

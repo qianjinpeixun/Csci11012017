@@ -1,0 +1,84 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 21 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lecture 21, CSCI 2132</h1>
+<p>After we declare a pointer, to use it to store an address, we need use the address operator &amp;. This operator can obtain the address of a variable of any type. This address can then be assigned to a pointer that points to variables of the same type. Study the following example:</p>
+<pre>int i, *p;
+p = &amp;i;</pre>
+<p>This piece of code makes p store the address of variable i. That is, p points to i. We can also initialize a pointer when we declare it. Thus the following piece of code is equivalent:</p>
+<pre>int i;
+int *p = &amp;i;</pre>
+<p>Once we store the address of a variable in a pointer, we can use this pointer to access the value of this variable, by making use of the indirection operator *. This operator can be used to access the variable that a pointer points to. Study the following example:</p>
+<pre>int i = 5;
+int *p = &amp;i;
+(*p)++;
+printf(&quot;%d %d\n&quot;, i, *p);</pre>
+<p>In the third line of this example, we use *p to access the variable that p points to. In this case, this means we use *p to access i. Thus (*p)++ is equivalent to i++. Therefore, the output of this program fragment should be:</p>
+<pre>6 6
+</pre>
+<p>Finally, there is one common mistake that we need pay attention to. If a pointer p is not initialized and we use *p, this will result in an undefined behavior. This is because p may store some random value, and if we use this value as a memory address, we might even attempt to assess some memory that the program should not have access to.</p>
+<h3>Pointer Assignment</h3>
+<p>We can use the assignment (=) operator to copy pointers of the same type. One few issues that we should pay attention to regarding pointer assignment is that we cannot assign a pointer variable to another pointer that points to a different type. </p>
+<p>This assignment operator copies addresses stored in pointer variables, as these addresses are values of pointers. Let's look at an example.</p>
+<pre>int i = 5, j = 10;
+int *p = &amp;i;
+int *q;
+int *r = &amp;j;
+
+*r = *p;
+q = p;
+(*q)++;
+
+printf(&quot;%d %d %d %d %d %d\n&quot;, i, j, *p, *q, *r);</pre>
+<p>What is the output of the above program fragment? When we declare pointers, we also make p point to i and r point to j. The statement *r = *p is not a pointer assignment. What it does is to assign the value of i to the value of j, as p and r point to i and j, respectively. The statement q = p is a pointer assignment, which makes q to point to i. Thus, (*q)++ increases the value of i by 1. Therefore, the output should be: </p>
+<pre>6 5 6 6 5</pre>
+<p>If you find the above analysis challenging, one strategy is to draw a figure to visualize which variable each pointer points to, as we did in class. </p>
+<h3>Pointer Argument</h3>
+<p>Pointers make it possible for us to perform many tasks using C. Even though we have only learned a little about pointers, we can already make use of them to do a few interesting things. Let's see what we can do by using pointers as function parameters / arguments.</p>
+<p>Using pointers as function arguments, we can modify multiple variables in the caller. This appears to contradict the fact that in C, all function arguments are passed by values. However, there is no contradiction: Even though we cannot use a function to change the value of an argument, if we pass the memory address of a variable in the caller as a pointer argument, the statements in this function being called can reach the memory location of this variable, and make changes to what is stored in this memory location. Let's make use of this to implement a function that swaps the values of two arguments, and a few lines of code that use this function:</p>
+<pre>void swap(int *a, int *b) {
+  int temp = *a;
+  *a = *b;
+  *b = temp;
+}
+
+int a = 4;
+int b = 5;
+swap(&amp;a, &amp;b);
+printf(&quot;%d %d\n&quot;, a b);</pre>
+<p>This function correctly swaps the values of the variables that its pointer parameters point to. Thus, the output is 5 4. Pay attention to the address operator (&amp;) used in the function call, and the indirection operator (*) used in the function body.</p>
+<p>With what we have seen so far, I can now explain why in most cases, we need an address operator (&amp;) in the scanf function call. This operator passes the address of a variable to the scanf function. This way scanf function can store the data item it reads into the memory address of this variable.</p>
+<p>Let's see another example. In this example, we use a function that computes the minimum, maximum, average and standard deviation of the values stored in an array. The code can be found at:</p>
+<pre>/users/faculty/prof2132/public/statistics.c</pre>
+<p>In the code, we used a standard C library sqrt (from math.h) that computes the square root of a value. Because of this, to compile this program, we need use the -lm option of gcc (this is required by gcc, not by the C standards).</p>
+<p>With what we have seen so far, I can now explain why in most cases, we need an address operator (&amp;) in the scanf function call. This operator passes the address of a variable to the scanf function. This way scanf function can store the data item it reads into the memory address of this variable.</p>
+<h3>Pointer Arithmetic</h3>
+<p>Some arithmetic operators can also be applied to pointers that point to array elements. </p>
+<p>First, we can add an integer to a pointer. If pointer p points to a[i], then p+j points to a[i+j]. In other words, p+j points to an element that is j positions forward in the same array. Check the following example:</p>
+<pre>int a[10] = {9};
+int *p = &amp;a[1];
+(*(p+3))++;
+printf(&quot;%d %d\n&quot;, a[1], a[4]);</pre>
+<p>What is the output of this program? In line 1, we initialize a so that it has values 9, 0, 0, 0, 0, 0, 0, 0, 0, 0. We then make p point to a[1]. Therefore, p+3 points to a[1+3] which is a[4]. Thus line 3 increments a[4] by 1. Hence the output is: 0 1</p>
+<p>Again, a figure might be helpful to beginners. The following is the status after the program finishes executing:</p>
+<pre>        a
+        9
+p --&gt;   0
+        0
+        0
+p+3 --&gt; 1
+        0
+        0
+        0
+        0
+        0</pre>
+<p>Similarly, we can also subtract an integer from a pointer.  If pointer p points to a[i], then p-j points to a[i-j].</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</BODY>
+
+</HTML>

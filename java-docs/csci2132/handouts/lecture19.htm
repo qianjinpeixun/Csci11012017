@@ -1,0 +1,80 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 19 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lecture 19, CSCI 2132</h1>
+<p>When the function whose stack frame is at the top of the call stack returns, its frame is popped out of the call stack, and its return value is given to the function that called it. The stack frame of the latter is now at the top of the call stack, so that it can resume executing.</p>
+<p>This is how the stack memory of a process is managed.</p>
+<h3>Recursion</h3>
+<p>Recursion is very useful for tasks that can be defined in terms of similar subtasks. You learned recursion in Computer Science II, so let's see how to write recursive functions in C.</p>
+<p>First, let's see a simple example. I will use this to explain issues in recursion, and describe what happens in the call stack when a recursive function is called. This function is used to compute x to the power of n.</p>
+<pre>int power(int x, int n) {
+  if (n == 0)
+    return 1;
+  else
+    return x * power(x, n-1);
+}</pre>
+<p>In this example, when n is equal to 0, we need not call function power recursively to compute the result. This is called the base case, which handles a subtasks the function can perform without calling itself. The other case, handled in the else part of the if statement, is the recursive case, in which the function calls itself.</p>
+<p>Now, let's see what happens in the call stack when we call power(3, 4) in the main function. In the beginning, the call stack has the stack frame of the main function only. When it calls power(3, 4), the stack frame of power(3, 4) is pushed into the call stack. Then, power(3, 4) calls power(3, 3), so another stack frame for power(3, 3) is pushed. The following is the content of the call stack when power(3, 0) is called.</p>
+<pre>
+power(3, 0)
+power(3, 1)
+power(3, 2)
+power(3, 3)
+power(3, 4)
+main</pre>
+<p> power(3, 0) is the base case of this recursive function. When it finishes executing, it returns 1 to power (3, 1) and its stack frame is popped out of the call stack:</p>
+<pre>
+1
+power(3, 1)
+power(3, 2)
+power(3, 3)
+power(3, 4)
+main</pre>
+<p>This keeps on going until the value 81 is returned from power(3, 4) and main is the only function whose stack frame is in the call stack.</p>
+<p>We all know that to compute x to the power of n, we can simply write an iterative solution using a for loop by multiplying x with itself n-1 times. Which solution is better here, the iterative one or the recursive one? Now that we learned how call stack works, we can understand that the iterative solution is more efficient, as pushing and popping stack frames requires more CPU time and memory storage than a simple iterative solution.</p>
+<p>Now, let's see some examples for which the recursive solutions are more natural. One example is the mergesort algorithm, which we learned in a previous course. The underlaying algorithm design paradigm is called divide-and-conquer, and it consists of three steps:</p>
+<p>Divide: Divide the n-element array to be sorted into two subarrays of n/2 elements each<br>
+  Conquer: Sort the two subarrays recursively using mergesort<br>
+  Combine: Merge the two sorted subarrays to produce the sorted answer</p>
+<p>You can see the implementation in C (with a few blanks that we filled in together in class) at: </p>
+<pre>/users/faculty/prof2132/public/mergesort.c</pre>
+<p>The above program has to be compiled using the c99 option (of course, fill in the blanks first).</p>
+<p>You will learn how to analyze quicksort and mergesort theoretically in Computer Science III, so I will just make some brief comments about what to use in practice. Quicksort tends to be faster than mergesort when we sort an array (which supports random access to any element). On the other hand, Mergesort tends to be faster than quicksort when we sort a linked list. There are other design considerations. If the data is so large that it does not fit in memory, mergesort is easy to be made I/O-efficient, since we can load part of the sequence into memory and sort it, before we merge sorted sublists. It is also easy to make mergesort a parallel algorithm to make use of computers with multiple CPUs or a CPU with multiple cores, as we can use each core to sort part of the sequence. How to make mergesort I/O-efficient or run in parallel is typically studied in graduate-level courses, though you may take some of these in your fourth year.</p>
+<p>The next example is to generate permutations of a set of elements. Here we consider the problem of permuting an array storing 1, 2, ..., n.   That is, we wish to print (say, n = 3):</p>
+<pre>
+   1 2 3
+   1 3 2
+   2 1 3
+   2 3 1
+   3 2 1
+   3 1 2 </pre>
+<p>The solution to this problem is not obvious at all. We can not simply come up with a loop that prints all permutations. Indeed, this is a typical software developer/engineer interview question. This kind of questions requires design before implementation, which is important to software development.</p>
+<p>To attack this kind of problems, we can try different problem solving techniques till we find a promising idea. Here let's try recursion. </p>
+<p>To design a recursive solution, the key is to break the task to be performed into similar subtasks. In this particular example, let's treat the printing of a permutation of 1, 2, ..., n as a task. Let's try to break it into subtasks. Instead of  printing a permutation of 1 to n, consider this subtask:
+  what should we do to print one permuted array if we already fixed the first i elements? </p>
+<p>To answer this question, let's try a simple example. Let n = 5, i = 2, and let the first 2 elements that have already been fixed be 3 and 4. 
+  What can we choose for the third element? Since we need print all permutations, we should try all possible remaining elements: 1, 2, 5. 
+  Say, we choose 1. Now we have fixed the first 3 elements: 3 4 1. 
+  What next? </p>
+<p>We can observe that the current task is a smaller subtask, as i = 3 now. This suggests that we can recurse!</p>
+<p>We are on the right track. Before we actually implement this, let's write down something concrete, and in particular, pseudocode. The following is the pseudocode of generating the permutation of the array from element at position k to element at position n-1 (subscripts start from 0):</p>
+<pre>Permute (A, k, n)
+   If k == n, print the permutation and return
+   For i in k, k+1, ... , n-1
+     Swap A[i] with A[k]
+     Permute (A, k+1, n)
+     Swap A[i] with A[k]</pre>
+<p>In the wrapper function, i.e. the function that calls the recursive function, we can perform the following function call: </p>
+<pre>   Permute (A, 0, n)</pre>
+<p> You can see the implementation in C (with a few blanks that we filled in together in class) at: </p>
+<pre>/users/faculty/prof2132/public/permute.c
+
+</pre>
+<p>&nbsp;</p>
+</BODY>
+
+</HTML>

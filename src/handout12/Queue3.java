@@ -1,5 +1,5 @@
 package handout12;
-
+import java.util.*;
 import assignment4.LinkedList;
 
 public class Queue3 {
@@ -51,6 +51,58 @@ public class Queue3 {
 		System.out.println(q1.dequeue());
 		q1.enqueue("16");
 		System.out.println(q1);
+		System.out.println("Begin reverse");
+		reverseQ(q1);
+		System.out.println(q1);
+		System.out.println("Start to printIO");
+		printIO();
+		System.out.println("Start to final question 15");
+		q15();
+	}
+	
+	public static void printIO(){
+		String s="1 2 3 4 5 6";
+		Scanner sc=new Scanner(s);
+		int i=0;
+		while(sc.hasNext()){
+			String line=sc.next();
+			i++;
+			if(i%2==0)
+				System.out.println(line);
+		}
+	}
+	
+	public static void reverseQ(Queue3 q){
+		if(q==null) return;
+		Stack1 s1=new Stack1(100);
+		while(!q.isEmpth()){
+			String s=q.dequeue();
+			s1.push(s);
+		}
+		while(!s1.isEmpty()){
+			q.enqueue(s1.pop());
+		}
+		System.out.println(q);
+	}
+	
+	public static void q15(){
+		Stack1 s=new Stack1(100);
+		Queue3 q=new Queue3();
+		
+		s.push("J");
+		s.push("A");
+		s.push("V");
+		s.push("A");
+		for(int i=0;i<3;i++)
+			q.enqueue(s.pop());
+		String str=s.pop();
+		for(int i=0;i<2;i++)
+			s.push(q.dequeue());
+		s.push(str);
+		System.out.println(s);
+		System.out.println(q);
+		
+		
 	}
 
 }

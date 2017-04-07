@@ -6,6 +6,7 @@ public class Queue1 {
 
 	public String toString(){
 		return Arrays.toString(queue);
+		
 	}
 	private String[] queue;
 	private int front, rear;

@@ -1,0 +1,72 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 12 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lecture 12, CSCI 2132</h1>
+<p>Other than conversion specifications, there can be ordinary characters in a format string. There are two cases:</p>
+<p>First,  the ordinary character is a while-space character. When it encounters one or more consecutive white-space characters in a format string, scanf repeatedly reads (zero or more) white-space characters (spaces, tabs, newlines...) from stdin, until it reads a non-white-space character. This non-white-space character will be put back to the input sequence.</p>
+<p>Second, the character is a non-white-space character. A non-white-space character in a format string is compared with the next input character. If they match, scanf will discard both and continue processing format string / input. Otherwise, the next input character will be &quot;put back&quot;, and scanf returns immediately.</p>
+<p>Now let's use what we learned to analyze some examples.</p>
+<p>Say, we defined two variables as follows</p>
+<pre>int i;
+float x;</pre>
+<p>Then the following two scanf functions calls are equivalent:</p>
+<pre>scanf(&quot;%d %f&quot;, &amp;i, &amp;x);
+scanf(&quot;%d%f&quot;, &amp;i, &amp;x);</pre>
+<p>The following two scanf function calls are not:</p>
+<pre>scanf(&quot;%d &quot;, &amp;i);
+scanf(&quot;%d&quot;, &amp;i);</pre>
+<p>This is because the first one will wait for the user to input a non-white space character after it reads the value of i (we assume the user types the return key after giving the value of i).</p>
+<p>Next, suppose that we defined these two variables:</p>
+<pre>float x, y;</pre>
+<p>Then these two function calls are not equivalent:</p>
+<pre>scanf(&quot;%f,%f&quot;, &amp;x, &amp;y);
+scanf(&quot;%f ,%f&quot;, &amp;x, &amp;y);</pre>
+<p>This is because if the user enters (note that there is a space before comma)</p>
+<pre>5.5 ,6e5 </pre>
+<p>Then the first scanf call will assign 5.5 to x, and then abort, as comma in the format string does not match the next input character which is space. The second scanf function will assign 5.5 and 6e5 to x and y, respectively.</p>
+<h3>Example: Adding Fraction</h3>
+<p>In this example, we ask the user to input an expression that is the addition of two fractions in one line, for example,</p>
+<pre>2/3+1/6</pre>
+<p>Then we compute the result, without reducing to the lowest terms. Thus the result for this input is</p>
+<pre>15/18</pre>
+<p>The following is the code; pay attention to the scanf function.</p>
+<pre>#include &lt;stdio.h&gt;</pre>
+<pre>int main(void) {
+  int num1, denom1, num2, denom2, result_num, result_denom;
+
+  printf(&quot;Enter expression:&quot;);
+  scanf(&quot;%d/%d+%d/%d&quot;, &amp;num1, &amp;denom1, &amp;num2, &amp;denom2); 
+
+  result_num = num1*denom2 + num2*denom1;
+  result_denom = denom1 * denom2;</pre>
+<pre>  printf(&quot;The sum is %d/%d\n&quot;, result_num, result_denom);</pre>
+<pre>  return 0;
+}
+ </pre>
+<p>A question: if the user enters the following line, will the program correctly assigns values to variables?</p>
+<pre>2/3 + 1/6</pre>
+<p>That is, there is a space before and after the plus operator.</p>
+<p>The answer is no.</p>
+<h2>Operators, Expressions and Statements</h2>
+<p>The syntax for operators, expressions and statements for C is very similar to that of Java. We will focus on the difference between C and Java to learn operators, expressions and statements in C. As you have taken two courses that cover Java programming, this way you will learn to use these in C quickly.</p>
+<h4>Arithmetic Operators</h4>
+<p>The operators are +, -, *, /, %. One difference between C and Java regarding arithmetic operators is that the operands of the % operator in C can only be integer types, while in Java, the operands can also be of floating-point types (find out what this operator does when it takes two floating-point variables as operands in Java). If you are used to using the modulus operators on floating-point variables in Java, avoid this in C as it will result in a compile error.</p>
+<p>The operator / can be used to explain what implementation-defined behavior is in C. We know when both operands of division are integers, the result will be an integer. When they are both positive, the result will be rounded down. Consider the following question: when one operand is negative, will the result be rounded up or down? For example, should the result of -10/7 be -1 or -2?</p>
+<p>To see this, we need learn what implementation-defined behaviors are in C. The C standard deliberately leaves parts of the language unspecified. An &quot;implementation&quot;, which is a C compiler on a specific platform, fills in these details. This is often for efficiency.</p>
+<p><br>
+  <br>
+</p>
+<pre>&nbsp;   
+</pre>
+<pre>&nbsp;   
+</pre>
+<p><br>
+  <br>
+</p>
+</BODY>
+
+</HTML>

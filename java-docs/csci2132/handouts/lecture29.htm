@@ -1,0 +1,58 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lectures 29 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lectures 29, CSCI 2132</h1>
+<h3>Reversing the Words in a Given String, Revisited</h3>
+<p>The homework given in the last lecture is to rewrite the function that reverses the words in a string, so that a temporary buffer is not required. </p>
+<p>To achieve this, we need try different ideas and make some observations. One idea is to simply reverse the entire string. This however would not work. For example, doing this for the string &quot;lord of the rings&quot; will give us &quot;signor eat of drop&quot;. We can however observe that by doing so, the words are in the desired order, and problem is that the letters in each word are not. Thus, we have an idea: let's reverse each word, after we reverse the entire string. This requires a function that can be used to reverse any substring of a given string, which is easy to implement using only an additional temporary character variable. To see the code, read:</p>
+<pre>/users/faculty/prof2132/public/reversewords2.c
+</pre>
+<h3>Dynamically allocated Arrays</h3>
+<p>The size of an array is often not known at compile time. Again, to address this issue, we can make use of the array/pointer connection to allocate arrays during execution.</p>
+<p>In this following short example, we allocate storage for an array of n integers (assume n is an int variable that we declared before which has been assigned a positive value), and set all elements to 0:</p>
+<pre>int *array, i;
+array = malloc(n * sizeof(int));
+if (array == NULL) {
+  ...
+}
+
+for (i = 0; i &lt; n; i++)
+  array[i] = 0;
+
+...
+free(array);</pre>
+<p>Pay attention to the sizeof operator. It is important as the parameter of malloc is the size in bytes.</p>
+<p>Now let us look at the several lines of the code that we wrote in the example above. For what we did in this example, we can also use a variable-length array. When should we use a dynamically allocated array and when should we use a VLA?</p>
+<p>First, it is important to know that dynamically allocated arrays are stored in heap and VLAs are stored in stacks. Thus large arrays should be declared as dynamically allocated arrays. As the stack frame of a function can sometimes be as small as a few kilobytes, it is usually a good idea to use dynamically allocated arrays instead of VLAs to store sequences of more than 1000 elements. </p>
+<p>Since stack allocation is faster than heap allocation, for small arrays, it is more efficient to declare VLAs for them.</p>
+<p>Finally, we should also consider the issue of portability. Dynamically allocated arrays have always been in the C programing language, while VLA is a new feature in C99. Even though most compilers support C99, there are exceptions. A notable exception is Visual C++, which is used widely on the windows platform. Thus, if you need make sure that your program can be compiled using a wide range of compilers, it is a good idea to use dynamically allocated arrays.</p>
+<p>Previously, in our implementation of mergesort on arrays, we use two variable-length arrays in the merge function. Would it be better to use dynamically allocated arrays instead, if we choose to release our code as a function in a C library? The answer would be positive, since client modules could use this function to sort very large arrays. To see an implementation based on dynamically-allocated arrays, see:</p>
+<pre>/users/faculty/prof2132/public/mergesort3.c
+</pre>
+<h2>File Manipulation</h2>
+<p>Files are important in UNIX. Previously we learned that in UNIX, everything is either a file or a process. Now let's learn how to use C to manipulate files.</p>
+<h3>Streams and Files</h3>
+<p>In C, a stream is any source of input or any destination of output. Streams may be associated with various devices. There are three standard streams: stdin, stdout and stderr. C abstracts all file operations into operations on streams of bytes. Thus we have the notion of input streams and output streams. We learned that UNIX also treats a file as a stream of bytes. Indeed, this model was made popular by UNIX. </p>
+<p>In C, streams are accessed through file pointers. These pointers are variables of type FILE *, and to use them, we need include stdio.h. Before we learn how to manipulate files, it is important to learn that there are two types of files: text files and binary files. The notion of lines applies to text files only. Thus a newline character is treated as a special character as it marks the end of a line. In a binary file, all bytes are treated equally. Another difference is how a value is stored. For example, we wish to store the integer 12345 in a file. If we store it in a text file, then it will be stored as five characters: '1', '2', '3', '4' and '5'. This requires 5 bytes. If we store it in a binary file as an int value, its binary representation will be stored in sizeof(int) bytes.</p>
+<h3>Opening a Text File</h3>
+<p>Before we read or write a file, we need open it. To open a file, we use the function fopen. Its prototype is</p>
+<pre>FILE* fopen(const char *filename, const char *mode);</pre>
+<p>In this prototype, filename is the absolute or relative pathname of a file to be opened. The mode specifies what operations we intend to perform on the file. It can have the following three values: </p>
+<ul>
+  <li>&quot;r&quot;: open for reading</li>
+  <li>&quot;w&quot;: open for writing. The file need not exist. If it exists, we will overwrite it.</li>
+  <li>&quot;a&quot;: open for appending. The file need not exist.</li>
+</ul>
+<p>If this function fails to open a file, it will return a NULL pointer. Otherwise it returns a file pointer using which we can access the file filename.</p>
+<h3>Closing a File</h3>
+<p>When we no longer need a file, we should close it. We can use the following function:</p>
+<p>int fclose(FILE* fp);</p>
+<p>This function returns 0 if it successfully closes the file that the file pointer fp is associated with. Otherwise, it returns EOF.</p>
+<h3>&nbsp;</h3>
+</BODY>
+
+</HTML>

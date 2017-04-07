@@ -1,0 +1,58 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 6 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lecture 6, CSCI 2132</h1>
+<p>The following command will copy the Java source files that we created in Lab 1 from directory lab1.bk to directory lab1:</p>
+<pre>cp ~/csci2132/lab1.bk/*.java ~/csci2132/lab1</pre>
+<p>The following command will copy all the files in directory lab1.bk to directory lab1:</p>
+<pre>cp ~/csci2132/lab1.bk/* ~/csci2132/lab1</pre>
+<h3>UNIX File Representation</h3>
+<p>A UNIX file is represented by an inode (this means index node), which is a data structure that contains information about</p>
+<ul>
+  <li>file type</li>
+  <li>permissions</li>
+  <li>owner and group IDs</li>
+  <li>last modification and access time</li>
+  <li>size of the object being stored</li>
+  <li>location of the data on the disk</li>
+</ul>
+<p>Thus this contains information of the ls -l command's output and more.</p>
+<p>The data stored in a file may scatter in different locations in the file system, so we use this data structure to store file information to improve efficiency.</p>
+<p>Every file has a unique inode number. A directory is a file containing a table of &lt;inode number, filename&gt; pairs, and each pair corresponds to a file in the directory. There is one system-wide inode table, and inode numbers are indices into it. </p>
+<p>This way the execution of commands such as ls -l that retrieve information regarding files in a directory can be efficient. This is a nice model that is effective and logical - a good example to follow when we design complex systems.</p>
+<h3>Hard Links</h3>
+<p>Knowing the file representation, we can learn how hard links work in UNIX. A hard link is a directory entry (&lt;inode number, filename&gt; pair) having a new filename, but duplicating an existing inode number. In other words, no new inode is created when we create a hard link. The following figure illustrates what a hard link is.</p>
+<p><img src="hardlink.jpg" width="579" height="116" alt="hard link"><br>
+</p>
+<pre>&nbsp; </pre>
+<p>The following command can be used to create a hard link:</p>
+<pre>ln target linkname</pre>
+<p>For example, suppose that your current directory is the csci2132 directory you created for labs. You can create a hard link named HelloWorld.java to the file with the same name in subdirectory lab1 using</p>
+<pre>ln lab1/HelloWorld.java HelloWorld.java</pre>
+<p>After this, you can compile and run the program using the hard link. Programs will not be able to tell any difference between the target and the hard link. Thus the original file is also a hard link to the same inode.</p>
+<p>A file is deleted when no hard links to its inode exist. In the above example, if we remove ~/csci2132/lab1/HelloWorld.java, we can still use ~/csci2132/HelloWorld.java to access the file.</p>
+<p>To check the hard link count of a given file, use the ls -l command.</p>
+<p>We can see that hard link makes it possible for us to give multiple names for the same file. Each time we remove a hard link, the hard link count is decreased by 1. The file is deleted when the count is 0. </p>
+<p>There are some restrictions about creating hard links. First, hard links cannot span different disk drives. Second, directories cannot have hard links, as this may potentially make the directory structure no long a tree.</p>
+<h3>Soft Links (Symbolic Links)</h3>
+<p>A soft link is a file that has the absolute or relative pathname of another file as its data part. When we create a soft link, we create a new inode. Thus this is equivalent to the &quot;short-cut&quot; in Windows. The following figure illustrates the difference between hard links and soft links:</p>
+<p><img src="links.jpg" width="454" height="133" alt="Links"></p>
+<p>To create a soft link, use</p>
+<pre>ln -s target linkname</pre>
+<p>If the target file is removed, the soft link still exists, but will result in an error if accessed. The ls -l command displays the pathname stored in a soft link.</p>
+<p>Soft links do not have the restrictions that apply to hard links. They also behave differently from hard links, as a hard link is essentially a different name of a file, while a soft link is a short-cut. </p>
+<p>Since soft links have fewer restrictions, why do we still create hard links? Some programs will treat soft links as files storing pathnames and they will not be fooled into processing the file whose pathname is stored in the soft link. The command cp is an example. Hard links will let the program access the real data in this case.</p>
+<h2>Pipes, Regular Expressions and Filters</h2>
+<h3>Pipes</h3>
+<p>We can now give a precise definition of pipes. The shell allows you to use the stdout of one process as the stdin of another process by connecting the processes together via the pipe (|) metacharacter. A sequence of processes chained together in this way is called a pipeline.</p>
+<p>The general steps of using pipelines in problem solving are: First, break the problem into a series of subproblems. Next, use a program to solve each subproblem. </p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</BODY>
+
+</HTML>

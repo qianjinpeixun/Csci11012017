@@ -14,7 +14,7 @@ public class Stack2 {
 
 	public boolean isEmpty() {
 		boolean ret = false;
-		ret = stack.size() == 0;
+		ret = (stack.size() == 0);
 		return ret;
 	}
 

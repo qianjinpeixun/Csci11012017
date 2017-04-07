@@ -15,6 +15,8 @@ public class Demo {
 		// load the friend relationship information from friends.txt
 		list.loadFriendsFromFile();
 		// Start to receive user's choice
+		
+		
 		while (num != 12) {
 			printMessages();
 			num = kb.nextInt();

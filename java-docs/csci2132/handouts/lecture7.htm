@@ -1,0 +1,57 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 7 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lecture 7, CSCI 2132</h1>
+<p>For example, if we would like to count the number of files in the current directory, we can divide this into two subproblems: getting a list of files in the current directory and counting how many files are in this list. Thus we can write</p>
+<pre>ls | wc -l</pre>
+<p>Pay attention to the -l option. We do not use -w because file names can have multiple words.</p>
+<h3>Regular Expressions</h3>
+<p>Regular expressions are used to address the problem of supporting fast and flexible text search: regular expression search can be done using a DFA (you will learn this in a 3rd year course) which is fast, and they can be used to specify a range of patterns and are thus flexible.</p>
+<p>A regular expression is a sequence of normal and/or special characters specifying a pattern to match against strings. It is used in many programs such as grep, sed and perl. Again, we need learn metacharacters that can be used to specify matching rules. Pay attention to the difference between these characters and wildcards in filename substitution. </p>
+<h3>Basic Regular Expressions</h3>
+<p>Metacharacters:</p>
+<ul>
+  <li>.: Matches any single character. For example, some strings that match a.b are: acb, a b, a-b, ...</li>
+  <li>[]: Matches any of the single characters enclosed in brackets. We can use - to specify a range, and ^ to compliment the set (e.g. [^     ]). Other special characters, including ., *, ^ (note that ^ has other special meanings outside []), $ and \ lose their special meanings inside [].</li>
+  <li>*: 0 or more occurrences of the character that precedes it. For example, a* can be used to specify the following set of strings: empty string, a, aa, aaa, aaaa, ...</li>
+  <li>^: Matches the beginning of a line.</li>
+  <li>$: Matches the end of a line. ^ and $ are useful if we want a pattern to occur as the prefix/suffix of a line.</li>
+  <li>\: Inhibits the meaning of any metacharacters.</li>
+</ul>
+<p>Many of these characters also have special meanings in the shell, so quoting (placing the regular expressions within a pair of single quotation marks ' ') may be necessary when using a regular expression as part of a command line.</p>
+<h3>BRE Examples</h3>
+<p>One or more spaces: spacespace* (replace space by a space character)</p>
+<p>Empty line: ^$</p>
+<p>Formatted dollar amount: \$[0-9][0-9]*\.[0-9][0-9]</p>
+<h3>Filter</h3>
+<p>A filter is a program that gets most of its data from stdin and writes its main results to stdout. As pipes use one program's stdout as another's stdin, it is natural that filters are often used as elements of pipelines. Now let's learn a filter command that uses BRE.</p>
+<h3>grep</h3>
+<p>The filter grep scans a file and outputs all lines that contain a given (regular expression) pattern. The syntax of using grep is</p>
+<pre>grep [options] BRE [file]</pre>
+<p>When file is not present, grep reads from stdin.</p>
+<p>For example, consider the following file named price:</p>
+<pre>Chocolate $1.23 each
+Candy $.56 each
+Jacket $278.00</pre>
+<pre>$44.00
+$44</pre>
+<p>If we enter the following command</p>
+<pre>grep '\$[0-9][0-9]*\.[0-9][0-9]' price</pre>
+<p>The output will be the following three lines:</p>
+<pre>
+Chocolate $1.23 each
+Jacket $278.00
+$44.00</pre>
+<p>Let's see more examples. In most UNIX/Linux distributions, there is a dictionary file that contains English words in a dictionary, and each line is one English word. This file is /usr/share/dict/linux.words on bluenose. The following command will make use of this file to find all the 5-letter dictionary words that start with a or b and end with b:</p>
+<pre>grep '^[ab]...b$' /usr/share/dict/linux.words</pre>
+<p>The following command will find all the dictionary words that start with a or b and end with b:</p>
+<pre>grep '^[ab].*b$' /usr/share/dict/linux.words
+</pre>
+<p>&nbsp;</p>
+</BODY>
+
+</HTML>

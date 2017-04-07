@@ -1,0 +1,60 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lectures 30 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lectures 30, CSCI 2132</h1>
+<h3>Formatted I/O</h3>
+<p>Now let's learn some functions that we can use to read/write text files. One set of such functions is used for formatted I/O. It is easy to learn them as long as we understand that printf and scanf are special cases of the following two functions:</p>
+<pre>int fprintf(FILE *stream, const char *format, ...);
+
+int fscanf(FILE *stream, const char *format, ...);</pre>
+<p>The only difference is that fprintf and fscanf have a parameter that is a file pointer, so that they will write to / read from a file.</p>
+<p>Thus, printf(...) is equivalent to fprintf(stdout, ...), and scanf(...) is equivalent to fscanf(stdin, ...). We can also print error messages to stderr as UNIX utilities typically do. This can be achieved using fprintf(stderr, ...).</p>
+<p>Let's use what we have learned to write &quot;hello, world&quot; to a file.</p>
+<pre> FILE *fp;</pre>
+<pre> fp = fopen(&quot;hello.txt&quot;, &quot;w&quot;);
+ if (fp == NULL) {
+   fprintf(stderr, &quot;Cannot open hello.txt&quot;);
+   exit(EXIT_FAILURE);
+ }</pre>
+<pre> fprintf(fp, &quot;hello, world\n&quot;);
+ fclose(fp);</pre>
+<h3>Character I/O</h3>
+<p>There is another set of functions that can be used to read/write a file character by character. The output function is</p>
+<pre>int putc(int c, FILE *stream);</pre>
+<p>This writes c to stream. If a write error occurs, it returns EOF. Otherwise, the character written is returned. Thus putchar(c) is equivalent to putc(c, stdout).</p>
+<p>The following is the input function:</p>
+<pre>int getc(FILE *stream);</pre>
+<p>This reads a character from stream and returns the character read. When the end of file is reached, EOF is returned. Thus getchar() is equivalent to getc(stdin).</p>
+<p>Now let's see an example. Previously we learned a UNIX command wc, which computes the number of characters, words and lines in a file. Here let's implement one of its features which is to compute the number of characters in a text file. The filename is given as a command-line argument.</p>
+<pre>#include &lt;stdio.h&gt;
+
+int main(int argc, char* argv[]) {
+  FILE *fp;
+  int count = 0;
+
+  if (argc != 2) {
+    fprintf(stderr, &quot;usage: ./countchar file\n&quot;);
+    return 1;
+  }
+
+  if ((fp = fopen(argv[1], 'r&quot;) == NULL) {
+    fprintf(stderr, &quot;cannot open file %s\n&quot;, argv[1]);
+    return 1;
+  }
+
+  while (getc(fp) != EOF)
+    count++;
+
+  printf(&quot;There are %d characters.\n&quot;, count);
+
+  fclose(fp);
+  return 0;
+}</pre>
+<h2>&nbsp;</h2>
+</BODY>
+
+</HTML>

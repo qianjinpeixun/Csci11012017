@@ -1,0 +1,60 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 22 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lecture 22, CSCI 2132</h1>
+<p>We can also subtract one pointer from another, if they point to elements in the same array. If p points to a[i] and q points to a[j], then p-q is equal to i-j. Look at the following example:</p>
+<pre>int a[10];
+int *p = &amp;a[0];
+int *q = &amp;a[5];
+printf(&quot;%d\n&quot;, p-q);</pre>
+<p>The output of this program should be -5.</p>
+<p>When two pointers point to elements of the same array, we can also compare them. The result of comparison is the same as the result of comparing the indices of the elements that they point to. For the two pointers p and q defined in the previous example,  we can add the following line of code:</p>
+<pre>printf(&quot;%d\n&quot;, p &lt; q);</pre>
+<p>The result is the same as the value of 0 &lt; 5, which is 1. Therefore, the output of this statement should be: 1</p>
+<p>What will happen if we perform pointer arithmetic on pointers that do not point to array elements? This will result in undefined behavior.</p>
+<h3>Pointers and Arrays</h3>
+<p>In C, pointers and arrays are closely related. In fact, the array name itself is a pointer to the 0th element of the array. That's why if a function changes the element of an array parameter, the change is reflected in the corresponding argument; the function knows the memory address of the array argument! This also means that we can use operators for pointers to access array elements. Let's say we have an array of length 10, and we use a pointer 0 to point to its 0th element;</p>
+<pre>int a[10];
+int *p = &amp;a[0];</pre>
+<p>The second line of the above program is equivalent to:</p>
+<pre>int *p = a;</pre>
+<p>This is because a stores &amp;a[0]. To assign the value 4 to a[2], the following two statements are equivalent:</p>
+<pre>a[2] = 4;</pre>
+<p>and</p>
+<pre>*(a+2) = 4;
+</pre>
+<p>We can also use p to access an element of array a. The following two statements are also equivalent to each other:</p>
+<pre>*(p+3) = 5;</pre>
+<p>and</p>
+<pre>p[3] = 5;
+</pre>
+<p>Thus both array subscripting and pointer arithmetic can be used on array names and pointers. To see an more complex example, we know that the following loop can be used to set all elements of a to 0:</p>
+<pre>int i;
+for (i = 0; i &lt; 10; i++)
+  a[i] = 0;</pre>
+<p>This is equivalent to:</p>
+<pre>for (p = a; p &lt; &amp;a[10]; p++)
+  *p = 0;</pre>
+<p>Note the &amp;a[10] here. This does not point to a valid array element, but since we are using &lt;, not &lt;=, it is fine. This is also equivalent to:</p>
+<pre>for (p = a; p &lt; a+10; p++)
+  *p = 0;</pre>
+<p>Now you may wonder what's the different between an array name and a pointer. There is one difference: You cannot make an array name point to a different element of the array. It always points to the 0th element.</p>
+<p>One issue that we need pay attention to is that the ++/-- operators have higher precedence than *. Thus, when we write programs that use pointers to access array elements exclusively, sometimes we need use brackets to change the precedence.</p>
+<p>When we declare array parameters for functions, we can use pointers instead. For example, if we want to write a function that returns the largest element in an array, instead of declaring an array parameter, we can also use:</p>
+<pre>int max_array(int *a, int len);</pre>
+<p>From all the examples above, we can see that to access array elements, we can either use pointer arithmetic or array subscripting. Which approach is superior? In the old days, pointer arithmetic is superior. This is because the machine instructions of incrementing a pointer is more efficient than subscripting which adds an integer to the address stored in the array name. However, modern compilers can do compiler optimization. Thus, they generate code that is about the same for both ways of iterating an array. Therefore, feel free to use either approach. </p>
+<p>You are still required to learn how to use pointer arithmetic to access array elements. This is because most existing C programs use pointer arithmetic instead of array subscripting, especially those written before there was much progress in compiler optimization. You might also find that pointer arithmetic is very nature: In the for loop, you simply move a pointer by one element in each iteration.</p>
+<p>Most compilers do not perform compiler optimization by default, as this uses much CPU time. Normally when we write programs, we do not enable compiler optimization, and before we release software products, we do that. In gcc, the option -O3 (or -O2, for a different level of optimization) can be used to turn compiler optimization on.</p>
+<h3>Mergesort Revisited</h3>
+<p>We now rewrite mergesort by using pointer arithmetic to access the elements of the given array. The code can be found at:</p>
+<pre>/users/faculty/prof2132/public/mergesort2.c
+</pre>
+<p>&nbsp;</p>
+<h3>&nbsp;</h3>
+</BODY>
+
+</HTML>

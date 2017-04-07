@@ -1,0 +1,99 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 18 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lectures 18, CSCI 2132</h1>
+<h2>Functions</h2>
+<p>In C, a function is a sequence of statements grouped together and given a name. The idea is similar to methods in Java, though C functions are not members of any class, as C does not provide language features that directly support object-oriented programming. Knowing this, we can easily think of a few advantages of using functions in our programs: We can use functions to divide a program into small pieces that are easy to comprehend. Using functions allows us to avoid duplicating code that is used more than once. Functions can also be reused in different programs. In addition, recursive functions provide  natural solutions to certain problems.</p>
+<h3>Function Definitions</h3>
+<p>The following is an example of function definitions:</p>
+<pre>int max (int a, int b) {
+  int c;
+
+  c = (a &gt; b) ? a : b;
+  return c;
+}</pre>
+<p>In the first line of the the above example, the int at the beginning of the line is the return type of the function, max is the function name, and variables defined within the round parentheses are function parameters. The remaining lines form the function body. In the function body, we defined a local variable c. This kind of variables is called local because they cannot be used outside the function body. This function takes from its caller two int values, and returns the one that is larger.</p>
+<p>A function does not have to return a value. If this is the case, then use void as its return type. It may still have return statements, but these statements cannot include return values. Functions do not have to have parameters, either. If a function does not have parameters, simply put void inside the round parentheses, or use empty ( ). </p>
+To call a function, we simply write down its name, followed by an argument list. For example, we can call the above function in the following main function:
+<pre>int main(void) {
+  int a = 5;
+  int b = 4;
+
+  printf(&quot;%d\n&quot;, max(a,b));
+  return 0;
+}</pre>
+<p>For efficiency, C functions cannot return arrays. This would require the copying of arrays, which is slow when the arrays are large. (For the same reason, we have to write a loop to copy the values in one array to another.) </p>
+<p>Now, let's learn what the printf and scanf library functions return.</p>
+<p>The printf function returns the number of characters printed. In most cases, we don't make use of this value. We can use the void keyword to explicitly specify that this is the case. For example, we can write the following statement:</p>
+<pre>(void) printf(&quot;hello, world\n&quot;);</pre>
+<p>The (void) is optional, but it adds additional documentation to your programs.</p>
+<p>The return value of the scanf function is used more often, as it is the number of data items successfully read and assigned to objects. If an input failure occurs before any data item can be read, EOF (a negative macro) is returned. For example, if we use the scanf function to read two int values, and we would like to check whether it successfully reads two int values, we can write the following program:</p>
+<pre>if (scanf(&quot;%d %d&quot;, &amp;i, &amp;j) != 2) {
+ printf(&quot;invalid input\n&quot;);
+ return 1;
+}</pre>
+<h3>Function Declarations </h3>
+<p>Before we learn more about functions, let's learn something called function declarations, which helps us to develop good programming habits.</p>
+<p>The syntax of a function declaration, or function prototype, is</p>
+<pre>return-type function-name(parameters);</pre>
+<p>This is essentially a function definition without the function body, but with an additional trailing semicolon. We can use function declarations to organize our program given at the beginning of this lecture in the following way:</p>
+<pre>#include &lt;stdio.h&gt;
+
+int max(int a, int b);
+
+int main(void) {
+  int a = 5;
+  int b = 4;
+
+  printf(&quot;%d\n&quot;, max(a,b));
+  return 0;
+}
+
+int max (int a, int b) {
+  int c;
+
+  c = (a &gt; b) ? a : b;
+  return c;
+}</pre>
+<p>In function prototypes, parameter names can be omitted. Thus, the prototype in the above example can also be written as. </p>
+<pre>int max(int, int);</pre>
+<p>In C99, either a declaration or a definition of a function must be present prior to the statement that calls this function. This is optional in C89 or earlier. However, without this requirement, C89 and earlier versions of C has a set of additional rules on making assumptions about function return types and parameter types, so that a compiler need not scan the program twice. These rules however may cause problems if a programer is not careful enough.</p>
+<p>A good programming style is to provide prototypes of all functions (except the main) before the main function, and then place their definitions after main, as shown in the example above. This is required for this course.</p>
+<h3>Arguments</h3>
+<p>We often use arguments to refer to expressions given in function calls, and parameters to refer to the corresponding variables appear in function definitions within the round parentheses. Sometimes people use these terms interchangeably.</p>
+<p>What's important is that in C, arguments are passed by values. In other words, changes made to a parameter during function execution do not affect the value of the corresponding arguments. Look at the following function swap that is supposed to swap the values of two variables, and a code snippet that calls this function. </p>
+<pre>void swap (int a, int b) {
+  int temp;
+  temp = a;
+  a = b;
+  b = temp;
+}
+
+int a = 4;
+int b = 5;
+swap(a, b);
+printf(&quot;%d, %d\n&quot;, a, b);</pre>
+<p>The above printf statement would print 4, 5. Thus the swap function is not implemented correctly. Later on, we will learn how to use pointers to implement the swap function correctly, which is more elegant than the workaround in Java for the same issue.</p>
+<p>When an array is the parameter of a function, normally its length should be another parameter. The following is the definition and prototype of a function that is supposed to return the maximum value of a function (the actual code in its body is omitted);</p>
+<pre>
+int max_array(int a[], int len) {
+...
+}
+
+int max_array(int [], int);</pre>
+<p>If a function changes the elements of an array parameter, the change is reflected in the corresponding argument. This appears to contradict the statement that arguments are always passed by value in C, but in fact there is no contradiction, and we will know why not when we learn pointers in C. For now, it is sufficient to know this fact.</p>
+<h3>Call Stack</h3>
+<p>At the low level, what exactly happens when a function is called? To answer this we need know something named call stack. We know that a stack is a fundamental data structure (check your notes for Computer Science II; I gave a very brief introduction in class). A call stack is a stack data structure that stores information about active functions of a program. </p>
+<p>When a function is called, the complier creates a stack frame containing information about the function, such as memory storage for its parameters, return value and local variables. This stack frame is pushed onto the call stack. Thus, the top of the call stack always store the stack frame of the most recently called function. For example, when the main function calls the max function, the content of the call stack is:</p>
+<pre>max
+main</pre>
+<p>This way, information in the stack frame at the top is readily available. In the above example, max is currently executing, so its stack frame is at the top and we can access its local variables and parameters. </p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</BODY>
+
+</HTML>

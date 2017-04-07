@@ -1,0 +1,88 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 4 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lecture 4, CSCI 2132</h1>
+<p>Sometimes an absolute path could be too long, e.g., the absolute path for HelloWorld.java. The solution is to choose the starting directory to be the directory that you are currently working in. This is called relative path, as it is relative to the current working directory. If the current working directory is my home directory, i.e., the following text would show on the monitor when I run the command pwd:</p>
+<pre>$pwd
+/users/faculty/mhe</pre>
+<p>Then, the relative path is</p>
+<pre>csci2132/lab1/HelloWorld.java</pre>
+<p>This is much shorter than the absolute path of the same file. When you use this, keep track of what your current working directory is, which you can use pwd to check. On bluenose, it is very easy, as the shell would display the path of the current working directory somewhere in front of the $ character it displays. However, this is not the case for every UNIX system as it depends on the configuration of the system; some may choose to display a $ only. </p>
+<p>If we use cd to change the current working directory, and the relative path of HelloWorld.java will change. Say, if we enter</p>
+<pre>$cd csci2132</pre>
+<p>Then the relative path will be lab1/HelloWorld.java</p>
+<p>After this, if we enter </p>
+<pre>$cd lab1
+</pre>
+<p>Then the relative path is simply HelloWorld.java</p>
+<p>Now, a question is, what is the absolute path of the file ../../../.?</p>
+<p>Answer: /users/faculty</p>
+<h3>Related UNIX Commands</h3>
+<p>The following is a list of related UNIX commands:</p>
+<ul>
+  <li>Listing the content of a directory: ls</li>
+  <li>showing the content of a file: cat/more/head/tail</li>
+  <li>Renaming a file: mv</li>
+  <li>Moving a file: mv</li>
+  <li>Making a directory: mkdir</li>
+  <li>Moving to a directory: cd</li>
+  <li>Copying a file: cp</li>
+  <li>Editing a file: emacs/vi</li>
+  <li>Deleting a directory: rmdir</li>
+  <li>Deleting a file: rm</li>
+  <li>Counting the words in a file: wc</li>
+</ul>
+<p>About emacs/vi: both editors are capable of handling the editing of large programs. In this course, we will learn emacs in a few labs, as it is the official editor of this course. Learning vi is optional.</p>
+<p>We will learn some of these commands in Lab 1, though not all of them, as Lab1 is designed to help you learn how to program on the UNIX platform, not to learn all these commands. As these commands are generally easy to learn,  you are asked (actually required) to read the textbook to learn how to use them. There is a nice tutorial in the textbook, which will be given as the reading material of this lecture, and it is a good idea to follow it. You are advised to finish this before working on Assignment 1. </p>
+<p>When you learn these commands, pay attention to exactly what they do, as well as the options of the commands. For example, mkdir can only be used to remove an empty directory. To remove a directory with files in it, use rm -r.</p>
+<h2>File Permissions</h2>
+<p>One functions of the operating system is to protect user's program and data from each other. In UNIX, the mechanism of file permissions provides this function. First, let's learn some concepts that UNIX file permissions are built upon.</p>
+<h3>Users and Groups</h3>
+<p>Every UNIX user has a unique username which is a text string. This is how we (human) refer to a user. Each user is also assigned a unique userID which is an integer. This is used in the internal representation of UNX. The main reason of doing so is that integer operations are faster than operations on strings.</p>
+<p>Every UNIX user is the member of a group. As with username/userID, each group has a unique group name and a unique group ID.</p>
+<p>A user can be in more than one group. To list the groups that you are in, use the command groups.</p>
+<h3>File Ownership</h3>
+<p>Each file is associated with an owner (who is a user), and this is the file owner. Each file is also associated with a group, which is called the file group. </p>
+<p>With these concepts, we can now talk about file permissions.</p>
+<h3>File Permissions</h3>
+<p>Each file has 3 sets of permissions:</p>
+<ul>
+  <li>file owner</li>
+  <li>users who are in the file group</li>
+  <li>other: everyone else</li>
+</ul>
+<p>Users in each set have the same access to the file.</p>
+<p>Each set has 3 permissions:</p>
+<ul>
+  <li>read</li>
+  <li>write</li>
+  <li>execute</li>
+</ul>
+<p>It is easy to understand what these permissions mean for a regular file. What do these mean for a directory? It is your home work to find this out (important).</p>
+<p>The permission of each set can be represented in 3 bits. For example, if the permission is 101, then the highest (left most) 1-bit means the users in this set can read  this file, the 0-bit means these users  cannot write this file and the lowest 1-bit means that these users can execute this file.</p>
+<p>Since there are three sets and there are 3 permissions for each set, the permissions of a file can be represented in 9 bits, as a binary number.</p>
+<p>For example, in the permission 111101000, 111 represents the permission for the owner, 101 represents the permission for the group, and 000 represents the permission for other.</p>
+<p>Bits are good for representation in computers, but it takes time to write down 9 0/1 digits for human users. Thus we often use an octal number of 3 digits, i.e., one digit for each set, to represent the permission of a file. When you learned integer representations for computers, you learned that it is indeed easy to convert a binary number to an octal number. The example in the previous paragraph, when represented in octal, is 750.</p>
+<h3>Checking Permissions</h3>
+<p>We can use the -l (character l) option of ls to check the permission of any file. For example, if we enter</p>
+<pre>ls -l HelloWorld.java</pre>
+<p>Then, one possible output is</p>
+<pre>-rw-r--r-- 1 mhe csfac 116 Sep  9  2012 HelloWorld.java
+</pre>
+<p>Here the first - means that this file is a regular file. Then there are nine characters: rw-r--r--. Each character corresponds to a digit in the 9 digits of the binary representation, 110100100, of the permissions of this file. For example, characters 4, 5 and 6 in this field, which are r--, means that this file can be read by users in its file group, but cannot be written or executed by users in its file group. The next field, 1, is the number of hard links associated with this file; we will learn what a hard link is later. The next two fields are file owner and file group, respectively. After them, it's the size of the file in bytes, the time at which this file was last modified and the name of the file.</p>
+<p>We only saw read and write permissions in the example above. The character x is used to indicate whether one of the bits corresponding to execute is 1.</p>
+<h3>Change Permissions</h3>
+<p>We can use the command chmod to change the permissions of a file. One way of using chmod is to give the file permissions as an octal number in the command line. For example, to change the permissions of HelloWorld.java so that users in the group can also modify it, we can enter</p>
+<pre>chmod 664 HelloWorld.java</pre>
+<p>Alternatively, we can give a symbolic representation of changes to make to the permissions of the file. Suppose that the permissions of HelloWorld.java is 644 for now. We can enter the following command to grant write permissions to users in the file group:</p>
+<pre>chmod g+w HelloWorld.java
+</pre>
+<p>This is handy if you would like to make some incremental changes to the permissions of a file. There is a set of simple rules about how to represent these changes using characters, u, g, o, r, w, x, + and -. Read the reading material to find out.</p>
+<h2>&nbsp;</h2>
+</BODY>
+
+</HTML>

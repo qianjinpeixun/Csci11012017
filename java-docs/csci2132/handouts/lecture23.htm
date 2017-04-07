@@ -1,0 +1,94 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 23 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lecture 23, CSCI 2132</h1>
+<h2>Strings</h2>
+<p>In C, strings are related to pointers. Now that we have learned pointers, let's learn strings.</p>
+<h3>Strings in C</h3>
+<p>A C string is a sequence of characters followed by a null character ('\0'). Thus, a null character is used to mark the end of the string. A null character is a character in which all bits are 0s. Hence we use the escape sequence '\0' to refer to this character. Note that this is NOT the character digit '0'.</p>
+<p>When we count the length of a C string, we count the number of characters stored in this string, excluding the null character.</p>
+<p>A C string can either be stored in a character array as a string variable, or it can be stored as a string literal. We cannot modify a string literal.</p>
+<h3>String Literals</h3>
+<p>A string literal is a sequence of characters enclosed in double quotes. We actually saw a string literal in the first C program that we saw, which is:</p>
+<pre>&quot;hello, world\n&quot;</pre>
+<p>This string literal is stored in memory as a sequence of bytes, as (we use | to separate bytes):</p>
+<pre>h|e|l|l|o|,|w|o|r|l|d|\n|\0
+</pre>
+<p>Pay special attention to the byte required to store the null character at the end. Thus to store a string literal of n characters, we need n+1 bytes.</p>
+<p>We can assign string literals to character pointers. This makes the character pointer point to the starting position of the string. For example, we can write:</p>
+<pre>char *p = &quot;hello, world\n&quot;</pre>
+<p>Then, we can use operators for pointers that we learned before to access the characters in the string. Check the following statement:</p>
+<pre>char ch = p[0];</pre>
+<p>This statement will assign character h to ch. This is equivalent to:</p>
+<pre>char ch = *p;</pre>
+<h3>String Variables</h3>
+<p>When allocating storage for a string variable, make sure to allocate an extra byte for the null character. In the following example, we define macro STRLEN to be the length of a string. Then when we declare a character array to store this string, we declare the array length to be STRLEN+1.</p>
+<pre>#define STRLEN 80
+char str[STRLEN+1];</pre>
+<p>The actual length of the string that can be stored in str defined above can be anything from 0 to 80, since we can store a shorter string that does not require its full capacity.</p>
+<p>Now, let's store the string &quot;abc&quot; in str. We can write:</p>
+<pre>str[0] = 'a';
+str[1] = 'b';
+str[2] = 'c';
+str[3] = '\0';</pre>
+<p>This is however tedious. Alternatively, we can use an initializer when we declare a string variable:</p>
+<pre>char str1[6] = &quot;abc&quot;;</pre>
+<p>Here, to store &quot;abc&quot;, we just need 4 bytes, including the null character at the end. The compiler will fill the remaining bytes with null characters, too. Thus, the following will be the content of str1:</p>
+<pre>a|b|c|\0|\0|\0</pre>
+<p>We can also omit the array length when we use an initializer:</p>
+<pre>char str2[] = &quot;abc&quot;;</pre>
+<p>str2 will be an array of 4 elements, stored as:</p>
+<pre>a|b|c|\0</pre>
+<h3>Reading and Writing Strings</h3>
+<p>We can use printf to print a string. The conversion specification for printing a string is %s. Thus, for the str2 defined above, we can print it using:</p>
+<pre>printf(&quot;%s\n&quot;, str2);</pre>
+<p>We can also use another function in stdio.h. This is the function puts. If we call puts(str), this will print str followed by a newline symbol.</p>
+<p>To read a string, we can use scanf, and the conversion specification is %s. For example, if str is a character array, then we can write:</p>
+<pre>scanf(&quot;%s&quot;, str);</pre>
+<p>When we use scanf to read a string as shown above, scanf will first skip white spaces. It will then read characters and store them in str, until it encounters a white-space character (space, newline, ...). Finally, it will store a null character to terminate. For example, if the user enters:</p>
+<pre>        hello, world
+</pre>
+<p>There are several space characters before hello, and a space character between comma and world. Then scanf will read and store the following string into str:</p>
+<pre>hello,\0</pre>
+<p>This means that we can use scanf to read a word, and no white-space characters will be read.</p>
+<p>There is another function called gets which can be used to read one entire line from the user and store it in a string. However, it does not check whether the string variable used to store this line has enough capacity. Thus, it is unsafe to use it, and if you do use it, gcc will issue a warning. </p>
+<p>We often design our own input function to read strings. The advantage is that we can control the exact program behavior, especially what to do when the string to be read is too long to fit in the string variable that is used to store it. In the following, we will write a function that reads characters without skipping white-space characters until a newline is reached, which isn't stored in the string. This function returns the number of characters stored. The following is the function definition (this example is from the textbook):</p>
+<pre>int read_line(char str[], int n) {
+  int ch, i = 0;
+
+  while ((ch = getchar()) != '\n') 
+    if (i &lt; n)
+      str[i++] = ch;
+
+  str[i] = '\0';
+
+  return i;
+}</pre>
+<p>Here we use n as the maximum number of characters to be stored in str, excluding null. If the number of characters in the input line is too large, the program reads and then discards the remaining characters. You may change this behavior depending on your particular application.</p>
+<h3>Library Functions</h3>
+<p>There are a set of standard library functions for strings. Their prototypes are provided in string.h. Thus to use them, we need write #include &lt;string.h&gt;.</p>
+<p>One such function is strcpy, which copies string s2 into s1 and returns s1:</p>
+<pre>char* strcpy(char *s1, const char *s2);</pre>
+<p>Here the keyword const means that even though the address of object that s2 points to is passed to this function, the function strcpy does not change this object.</p>
+<p>Let's use pointers to implement this function to get some exercise:</p>
+<pre>char* strcpy(char *s1, const char *s2) {
+  char *p = s1;
+
+  while ((*p++ = *s2++) != '\0')
+    ;
+
+  return s1;
+}</pre>
+<p>The interesting part is the while loop which has a null statement. It is very concise and is popular among C programers. We could certainly also use a few statements to perform the same task. One homework for you is to implement this function using array subscripting instead of pointer arithmetic.</p>
+<p>To use this function, we need make sure that s1 points to a sufficiently large block of memory. The following example would NOT work:</p>
+<pre>char s1[] = &quot;abc&quot;;
+strcpy(s1, &quot;defg&quot;);</pre>
+<p>To make this example work, we need declare s1 as a character array of 5 or more elements.</p>
+<p>&nbsp;</p>
+</BODY>
+
+</HTML>

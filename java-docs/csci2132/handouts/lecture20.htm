@@ -1,0 +1,92 @@
+<HTML>
+
+<HEAD>
+<TITLE> Lecture 20 Notes, CSCI 2132 </TITLE>
+</HEAD>
+
+<BODY>
+<h1>Lecture 20, CSCI 2132</h1>
+<h2>Program Organization</h2>
+<h3>Local Variables</h3>
+<p>We know that local variables are variables defined inside the body of a function. When we learned the call stack, we also learned that their storage is allocated automatically once the stack frame of the function is created, and deallocated automatically when the stack frame is popped out of the call stack. That's why we say that the local variables have automatic storage duration, as their memory storage is automatically allocated when the enclosing function is called and deallocated when it returns.</p>
+<p>Local variables also have block scope, which means that they are visible from their point of declaration to the end of the enclosing function body. Here visible means that they can be used. </p>
+<p>The parameters of a function also have automatic storage duration and block scope. The only difference is that they are always initialized with the value of arguments, while local variables do not have to be assigned initial values when they are declared.</p>
+<h3>External Variables</h3>
+<p>We learned that local variables must be declared inside functions, which implies that there are also variables that are not declared inside any function. Indeed, in C, we can declare variables outside any functions, and these variables are called external variables. Note that variables declared inside the main function are still local variables even though the main function is special in C. </p>
+<p>External variables have static storage duration. This means that they have permanent memory storage locations when the program is executing. Thus they retain their values throughput program execution. Previously we learned that the memory of a process is composed of four parts. Among these four parts, the data part is used to store external variables.</p>
+<p>External have file scope. this means that they are visible from the point of declaration to the end of the enclosing file. In other words, after we declare an external variable somewhere in the program, any function defined afterwards can access this variable.</p>
+<h3>Organizing a C Program in a Single File</h3>
+<p>C is a very flexible language. It has only a limited number of rules regarding program layout: First, we cannot use a variable/type/macro before we declare/define it. Second, in C99, we cannot call a function before it has been declared or defined. Any program that follows these rules is not expected to have issues with compilers regarding its layout. This also implies that to construct a compiler for C, one has to consider many cases.</p>
+<p>If you have learned programming languages such as Pascal and Ada, you will see a huge difference in terms of flexibility. </p>
+<p>This, however, doesn't mean that we need not pay attention to program layout at all. To develop good programming habit, you are recommended to follow the layout given below when you organize a C program in a single source file:</p>
+<pre>#include directives
+#define directives
+type definitions
+external variable declarations
+function prototypes (except main)
+main
+other function definitions</pre>
+<p>This layout is logical. For example, since we may use types we define to declare variables, it makes sense to write them down before we declare external variables, or define functions which may use local variables. </p>
+<p>Let's organize a C program using functions as suggested above. In this example, we write a program that converts a decimal integer into a binary number. First, let's see the pseudocode for a solution that is not quite right:</p>
+<pre>
+While number &gt; 0
+  Find out the remainder after dividing the number by 2
+  Print the remainder
+  Divide the number by 2</pre>
+<p> What's wrong with the pseudocode? Let's run it using an example. Say, we want to convert 6 into a binary number. Using the above solution, we will print 011. However, the binary representation of 6 is 110. From this, we can see that our pseudocode actually prints the digits of the binary expansion in reverse order. </p>
+<p>How do we fix this? We can make use of a basic data structure that we learned before. In particular, we can use a stack, since it is a last in, first out data structure. In the 3rd line of the pseudocode, instead of printing the remainder, we push it into a stack. After the loop, we pop every digit out of the stack, and print them one by one. This way we will have a correct solution.</p>
+<p>The implementation can be found at:</p>
+<pre>/users/faculty/prof2132/public/decimal2binary.c
+</pre>
+<p>Pay attention to the layout of this example, and how we use external variables to implement a stack using C. Also note the exit function, which is from the header file stdlib.h. This function can be called to terminate a program, and its parameter is the exit code. We often use one of these two macros as arguments when calling exit: EXIT_SUCCESS and EXIT_FAILURE. The values of these macros are implementation-defined, and in most implementations, they are defined as 0 and 1, respectively, to be consistent with the convention of exit codes of most UNIX utilities. Calling exit in the main function has the same effect as using the return statement. However, if we want to terminate the entire program when we execute a function that is not main, we have to call exit.</p>
+<h3>Avoid Using External Variables Unnecessarily</h3>
+<p>Even though we used external variables in the above example, we should always avoid using external variables unnecessarily. They make it harder to maintain a program: If we make changes to external variables, we have to check all the functions that are defined after we declare these variables. For similar reasons, they make it harder to debug a program. </p>
+<p>In addition, using external variables makes it harder to reuse code. The above example works, but what if we need write a program that uses two stacks? If we use two sets of external variables, then we even need duplicate  functions to get two sets of functions, one for each stack. This is certainly not good. To avoid this, we could define variables that store the data in the stack as local variables in main, and for each stack function, we declare additional parameters so that we can pass these variables as arguments to them. There is one issue here: The pop function changes the stack top variable. However, in C all arguments are passed by value. Thus, to change this variable, we should return its new value so that the statement that calls this function can assign this new value to the stack top variable. However, the pop function also need return the value popped out of the stack. Since we cannot return two values from one function, this will not work. When we learn pointers, we will know how to make this work.</p>
+<h3>Blocks / Compound Statements</h3>
+<p>When we group statements together using curly brackets, i.e. {statements}, we create a block, or compound statement. We have done this before. Say, when one branch of the if statement uses more than one statement, we create a compound statement consisting of all these statements.</p>
+<p>What we haven't learned before is that, in such a block, we can even have variable declarations. Thus, a block can be of the following form:</p>
+<pre>{declarations statements}</pre>
+<p>In C99, we can even mix declarations with statements in the same block.</p>
+<p>The following is an example:</p>
+<pre>if (i &gt; j) {
+  int temp = i;
+  i = j;
+  j = temp;
+}</pre>
+<p>The variables defined in a block also have automatic storage duration. The allocation is done when the program execution enters the block, and they are deallocated when exiting the block. They have block scope, which means they are visible from the point of declaration till the end of the block.</p>
+<h3>Scope</h3>
+<p>Now we know that we can declare a variable in different places of a program. What will happen if we define variables with the same name but in different locations of a program? For this we need learn the scope rule of C.</p>
+<p>This rule says that when blocks (here we use the term block loosely; it can be a function or even a file) are nested, definitions in inner blocks hide those in outer blocks. Let's learn this using an example.</p>
+<pre>1.  int i;
+2.  void f(int i) {
+3.    i = 1;
+4.
+5.    if (i &gt; 0) {
+6.      int i;
+7.      i = 4;
+8.    }
+9.    i = 14;
+10. }
+11.
+12. void h(void) {
+13.   i = 5;
+14. }</pre>
+<p>Look at line 3. Before that, we declared i twice, one as an external variable, the other as a parameter of f. Which i are we using at line 3? Since the parameter is in the inner block, we conclude that the i in line 3 is the i defined in line 2. Following similar reasonings, we conclude that the variable i used in lines 7, 9 and 13 are the variables declared in lines 6, 2 and 1, respectively.</p>
+<h2>Pointers</h2>
+<p>Pointers are one very important feature of C. They allow us to refer to a variable by its memory address, and are thus crucial to memory management. To recall what a memory address means: in most computers, memory can be viewed as a sequence of bytes, and each byte of memory has a unique address which is an integer starting from 0. This is the address that we are talking about.</p>
+<p>From this, we can define what a pointer is.</p>
+<h3>Pointer Variables</h3>
+<p>A pointer is a variable that stores a memory address. To declare a pointer variable, we following this syntax: </p>
+<pre>type *pointer_name; </pre>
+<p>Here type is the type of any variable, and pointer_name is a pointer variable that can store the address of (i.e. point to) data of said type.</p>
+<p>For example, we can define the following pointers:</p>
+<pre>int *p;
+char *p;
+int **r;</pre>
+<p>What's interesting above is the pointer r. It is a pointer to pointers to int variables.</p>
+<p>One important rule is that every pointer variable can point only to objects of a particular type. This type is called the reference type.</p>
+<h3>&nbsp;</h3>
+<pre>&nbsp; </pre>
+</BODY>
+
+</HTML>
