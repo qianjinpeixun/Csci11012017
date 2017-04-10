@@ -3,6 +3,7 @@ package assignment4;
 public class Node {
 	private String data;
 	private Node next;
+	private Node pre;
 
 	public Node(String d, Node n) {
 		data = d;
